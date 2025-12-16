@@ -2,11 +2,11 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 /**
- * HAMYON — Telegram Mini App (Long UI, Fully Interactive)
+ * HAMYON — Telegram Mini App
  * Offline-first (localStorage) + optional Supabase REST sync
  *
- * IMPORTANT SECURITY:
- * - Do NOT put Telegram bot token or OpenAI key in Vercel/Front-end.
+ * SECURITY:
+ * - Do NOT put Telegram bot token or OpenAI key in frontend.
  * - Mini-app only uses VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY (public anon key).
  */
 
@@ -28,6 +28,7 @@ const I18N = {
     home: "Bosh sahifa",
     stats: "Statistika",
     add: "Qo‘shish",
+    transactions: "Tranzaksiyalar",
     categories: "Kategoriyalar",
     limits: "Limitlar",
     goals: "Maqsadlar",
@@ -57,21 +58,6 @@ const I18N = {
     month: "Bu oy",
     addCategory: "Kategoriya qo‘shish",
     editCategory: "Kategoriyani tahrirlash",
-    categoryNameUz: "Nomi (UZ)",
-    categoryNameRu: "Nomi (RU)",
-    categoryNameEn: "Nomi (EN)",
-    emoji: "Emoji",
-    color: "Rang",
-    addLimit: "Yangi limit",
-    editLimit: "Limitni tahrirlash",
-    limitAmount: "Limit summasi",
-    addGoal: "Yangi maqsad",
-    editGoal: "Maqsadni tahrirlash",
-    goalName: "Maqsad nomi",
-    targetAmount: "Maqsad summasi",
-    currentAmount: "Yig‘ilgan",
-    deposit: "Qo‘shish",
-    withdraw: "Ayirish",
     language: "Til",
     dataMode: "Ma’lumotlar rejimi",
     localMode: "Local (offline)",
@@ -92,6 +78,7 @@ const I18N = {
     noCategories: "Kategoriyalar yo‘q",
     botHint: "Bot orqali ham qo‘shishingiz mumkin, lekin mini-app mustaqil ishlaydi.",
     tgOpen: "Telegramda ochish",
+    resetLocal: "Local ma’lumotlarni tozalash",
   },
   ru: {
     appName: "Hamyon",
@@ -104,6 +91,7 @@ const I18N = {
     home: "Главная",
     stats: "Статистика",
     add: "Добавить",
+    transactions: "Транзакции",
     categories: "Категории",
     limits: "Лимиты",
     goals: "Цели",
@@ -133,21 +121,6 @@ const I18N = {
     month: "Месяц",
     addCategory: "Добавить категорию",
     editCategory: "Редактировать категорию",
-    categoryNameUz: "Название (UZ)",
-    categoryNameRu: "Название (RU)",
-    categoryNameEn: "Название (EN)",
-    emoji: "Эмодзи",
-    color: "Цвет",
-    addLimit: "Новый лимит",
-    editLimit: "Редактировать лимит",
-    limitAmount: "Сумма лимита",
-    addGoal: "Новая цель",
-    editGoal: "Редактировать цель",
-    goalName: "Название цели",
-    targetAmount: "Целевая сумма",
-    currentAmount: "Накоплено",
-    deposit: "Добавить",
-    withdraw: "Уменьшить",
     language: "Язык",
     dataMode: "Режим данных",
     localMode: "Local (offline)",
@@ -168,6 +141,7 @@ const I18N = {
     noCategories: "Нет категорий",
     botHint: "Можно добавлять через бота, но мини-приложение работает автономно.",
     tgOpen: "Открыть в Telegram",
+    resetLocal: "Сбросить local данные",
   },
   en: {
     appName: "Hamyon",
@@ -180,6 +154,7 @@ const I18N = {
     home: "Home",
     stats: "Statistics",
     add: "Add",
+    transactions: "Transactions",
     categories: "Categories",
     limits: "Limits",
     goals: "Goals",
@@ -209,21 +184,6 @@ const I18N = {
     month: "This month",
     addCategory: "Add category",
     editCategory: "Edit category",
-    categoryNameUz: "Name (UZ)",
-    categoryNameRu: "Name (RU)",
-    categoryNameEn: "Name (EN)",
-    emoji: "Emoji",
-    color: "Color",
-    addLimit: "New limit",
-    editLimit: "Edit limit",
-    limitAmount: "Limit amount",
-    addGoal: "New goal",
-    editGoal: "Edit goal",
-    goalName: "Goal name",
-    targetAmount: "Target amount",
-    currentAmount: "Saved",
-    deposit: "Deposit",
-    withdraw: "Withdraw",
     language: "Language",
     dataMode: "Data mode",
     localMode: "Local (offline)",
@@ -244,6 +204,7 @@ const I18N = {
     noCategories: "No categories",
     botHint: "You can add via bot too, but the mini-app works independently.",
     tgOpen: "Open in Telegram",
+    resetLocal: "Reset local data",
   },
 };
 
@@ -254,7 +215,7 @@ const LANGS = [
 ];
 
 // ---------------------------
-// Theme (based on your long design)
+// Theme
 // ---------------------------
 const THEME = {
   bg: {
@@ -334,13 +295,8 @@ const GlassCard = ({ children, className = "", onClick, style = {}, gradient }) 
     whileHover={onClick ? { scale: 1.01, y: -2 } : {}}
     whileTap={onClick ? { scale: 0.99 } : {}}
     onClick={onClick}
-    className={`relative overflow-hidden rounded-2xl border border-white/5 ${
-      onClick ? "cursor-pointer" : ""
-    } ${className}`}
-    style={{
-      background: gradient || THEME.bg.card,
-      ...style,
-    }}
+    className={`relative overflow-hidden rounded-2xl border border-white/5 ${onClick ? "cursor-pointer" : ""} ${className}`}
+    style={{ background: gradient || THEME.bg.card, ...style }}
   >
     {children}
   </motion.div>
@@ -373,7 +329,6 @@ const ModalShell = ({ children, onClose, mode = "bottom" }) => {
     );
   }
 
-  // bottom sheet
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -400,7 +355,7 @@ const ModalShell = ({ children, onClose, mode = "bottom" }) => {
 };
 
 // ---------------------------
-// Default categories (seed)
+// Default categories
 // ---------------------------
 const DEFAULT_CATEGORIES = {
   expense: [
@@ -441,7 +396,6 @@ const sb = {
       Authorization: `Bearer ${SUPABASE_KEY}`,
       "Content-Type": "application/json",
     };
-    // Prefer header so POST returns inserted rows
     if (method === "POST") headers.Prefer = "return=representation";
     if (method === "PATCH") headers.Prefer = "return=representation";
 
@@ -461,13 +415,6 @@ const sb = {
     }
     return json;
   },
-
-  // These tables should exist if you want remote sync:
-  // users: telegram_id, name, balance
-  // transactions: user_telegram_id, amount, category_id, description, created_at
-  // limits: user_telegram_id, category_id, limit_amount
-  // goals: user_telegram_id, name, target_amount, current_amount, emoji
-  // categories (optional): user_telegram_id, type, name_uz, name_ru, name_en, emoji, color, is_default
 };
 
 // ---------------------------
@@ -498,8 +445,6 @@ export default function HamyonApp() {
   const [showAddTx, setShowAddTx] = useState(false);
   const [editTxId, setEditTxId] = useState(null);
 
-  const [showInsights, setShowInsights] = useState(false);
-
   const [showCategories, setShowCategories] = useState(false);
   const [showLimits, setShowLimitsScreen] = useState(false);
   const [showTransactions, setShowTransactionsScreen] = useState(false);
@@ -516,17 +461,6 @@ export default function HamyonApp() {
     categoryId: "food",
     date: todayISO(),
   });
-
-  const [catForm, setCatForm] = useState({
-    id: "",
-    type: "expense",
-    uz: "",
-    ru: "",
-    en: "",
-    emoji: "📦",
-    color: "#90A4AE",
-  });
-  const [catEditId, setCatEditId] = useState(null);
 
   const [limitForm, setLimitForm] = useState({ id: null, categoryId: "food", amount: "" });
   const [goalForm, setGoalForm] = useState({ id: null, name: "", target: "", current: "", emoji: "🎯" });
@@ -565,7 +499,6 @@ export default function HamyonApp() {
       u = tg.initDataUnsafe?.user || null;
     }
     if (!u) {
-      // fallback for browser dev
       u = { id: safeJSON.get("hamyon_uid", Date.now()), first_name: "User" };
       safeJSON.set("hamyon_uid", u.id);
     }
@@ -573,7 +506,7 @@ export default function HamyonApp() {
   }, []);
 
   // ---------------------------
-  // Supabase connectivity check + auto mode choose
+  // Supabase connectivity check
   // ---------------------------
   useEffect(() => {
     (async () => {
@@ -582,7 +515,6 @@ export default function HamyonApp() {
         return;
       }
       try {
-        // quick ping: read 1 row from users (table must exist)
         await sb.req("users?select=id&limit=1");
         setRemoteOk(true);
       } catch {
@@ -594,7 +526,6 @@ export default function HamyonApp() {
   const useRemote = useMemo(() => {
     if (dataMode === "local") return false;
     if (dataMode === "remote") return remoteOk && sb.enabled();
-    // auto
     return remoteOk && sb.enabled();
   }, [dataMode, remoteOk]);
 
@@ -663,7 +594,6 @@ export default function HamyonApp() {
       return;
     }
     try {
-      // Ensure user exists
       const users = await sb.req(`users?telegram_id=eq.${tgUser.id}&select=*`);
       let u = users?.[0] || null;
       if (!u) {
@@ -680,7 +610,6 @@ export default function HamyonApp() {
         sb.req(`goals?user_telegram_id=eq.${tgUser.id}&select=*`),
       ]);
 
-      // Map remote rows → local shape
       const txLocal =
         (tx || []).map((r) => ({
           id: r.id,
@@ -729,7 +658,6 @@ export default function HamyonApp() {
     if (!useRemote) return;
 
     try {
-      // Ensure user exists
       const users = await sb.req(`users?telegram_id=eq.${tgUser.id}&select=id,telegram_id`);
       if (!users?.[0]) {
         await sb.req("users", {
@@ -752,14 +680,11 @@ export default function HamyonApp() {
         },
       });
 
-      // If supabase returned row, replace local id with remote uuid
       const row = inserted?.[0];
       if (row?.id) {
         setTransactions((prev) => prev.map((x) => (x.id === tx.id ? { ...x, id: row.id, remote: true } : x)));
       }
 
-      // Update user balance remotely (optional)
-      // NOTE: this depends on your schema and RLS. If it fails, mini-app still works.
       try {
         const users2 = await sb.req(`users?telegram_id=eq.${tgUser.id}&select=id,balance`);
         const u = users2?.[0];
@@ -767,7 +692,6 @@ export default function HamyonApp() {
           await sb.req(`users?id=eq.${u.id}`, { method: "PATCH", body: { balance: balance + tx.amount } });
         }
       } catch {}
-
     } catch (e) {
       console.error("pushTxToRemote error:", e);
     }
@@ -775,7 +699,6 @@ export default function HamyonApp() {
 
   const deleteTxRemote = async (tx) => {
     if (!useRemote) return;
-    // Only if tx has uuid format; if not, ignore
     if (!tx?.id || typeof tx.id !== "string" || tx.id.length < 10) return;
     try {
       await sb.req(`transactions?id=eq.${tx.id}`, { method: "DELETE" });
@@ -789,7 +712,11 @@ export default function HamyonApp() {
   // ---------------------------
   const openAddTx = (type) => {
     const defaultCat =
-      type === "expense" ? (allCats.expense[0]?.id || "food") : type === "income" ? (allCats.income[0]?.id || "salary") : (allCats.debt[0]?.id || "borrowed");
+      type === "expense"
+        ? allCats.expense[0]?.id || "food"
+        : type === "income"
+        ? allCats.income[0]?.id || "salary"
+        : allCats.debt[0]?.id || "borrowed";
 
     setEditTxId(null);
     setTxForm({
@@ -822,8 +749,6 @@ export default function HamyonApp() {
     const isIncome = txForm.type === "income";
     const isDebt = txForm.type === "debt";
 
-    // Debt rule:
-    // borrowed => +, lent => -, loan_payment => -, credit => -
     const debtSign = (() => {
       if (!isDebt) return 1;
       const c = txForm.categoryId;
@@ -835,23 +760,28 @@ export default function HamyonApp() {
     })();
 
     const signed =
-      isExpense ? -Math.abs(amtNum) :
-      isIncome ? Math.abs(amtNum) :
-      debtSign * Math.abs(amtNum);
+      isExpense ? -Math.abs(amtNum) : isIncome ? Math.abs(amtNum) : debtSign * Math.abs(amtNum);
 
     const now = new Date();
     const time = now.toISOString().slice(11, 16);
 
     if (editTxId) {
-      // edit existing
       setTransactions((prev) => {
         const old = prev.find((x) => x.id === editTxId);
-        const delta = (old ? signed - old.amount : signed);
+        const delta = old ? signed - old.amount : signed;
         setBalance((b) => b + delta);
 
         return prev.map((x) =>
           x.id === editTxId
-            ? { ...x, type: txForm.type, amount: signed, categoryId: txForm.categoryId, description: txForm.description || catLabel(getCat(txForm.categoryId)), date: txForm.date, time }
+            ? {
+                ...x,
+                type: txForm.type,
+                amount: signed,
+                categoryId: txForm.categoryId,
+                description: txForm.description || catLabel(getCat(txForm.categoryId)),
+                date: txForm.date,
+                time,
+              }
             : x
         );
       });
@@ -860,7 +790,6 @@ export default function HamyonApp() {
       return;
     }
 
-    // new
     const tx = {
       id: uid(),
       type: txForm.type,
@@ -878,82 +807,15 @@ export default function HamyonApp() {
     setShowAddTx(false);
     showToast("✓", true);
 
-    // push remote in background (best effort)
     await pushTxToRemote(tx);
   };
 
   const removeTx = async (tx) => {
     if (!confirm(t.confirmDelete)) return;
     setTransactions((prev) => prev.filter((x) => x.id !== tx.id));
-    setBalance((b) => b - tx.amount); // reverse effect
+    setBalance((b) => b - tx.amount);
     showToast("✓", true);
-
     await deleteTxRemote(tx);
-  };
-
-  // ---------------------------
-  // CRUD: Categories (local only, can be synced later)
-  // ---------------------------
-  const openAddCategory = (type) => {
-    setCatEditId(null);
-    setCatForm({ id: "", type, uz: "", ru: "", en: "", emoji: "📦", color: "#90A4AE" });
-  };
-
-  const openEditCategory = (type, cat) => {
-    setCatEditId(cat.id);
-    setCatForm({
-      id: cat.id,
-      type,
-      uz: cat.uz || "",
-      ru: cat.ru || "",
-      en: cat.en || "",
-      emoji: cat.emoji || "📦",
-      color: cat.color || "#90A4AE",
-    });
-  };
-
-  const saveCategory = () => {
-    const type = catForm.type;
-    const idValue = (catForm.id || "").trim() || uid().slice(0, 8);
-    const newCat = {
-      id: idValue,
-      uz: (catForm.uz || "").trim() || idValue,
-      ru: (catForm.ru || "").trim() || idValue,
-      en: (catForm.en || "").trim() || idValue,
-      emoji: catForm.emoji || "📦",
-      color: catForm.color || "#90A4AE",
-      custom: true,
-    };
-
-    setCategories((prev) => {
-      const copy = { ...prev, [type]: [...(prev[type] || [])] };
-      const idx = copy[type].findIndex((c) => c.id === catEditId);
-      if (catEditId && idx >= 0) copy[type][idx] = newCat;
-      else copy[type].unshift(newCat);
-      return copy;
-    });
-
-    showToast("✓", true);
-    setCatEditId(null);
-  };
-
-  const deleteCategory = (type, catId) => {
-    if (!confirm(t.confirmDelete)) return;
-
-    // prevent deleting if used in tx or limits or goals settings (soft rule)
-    const usedTx = transactions.some((x) => x.categoryId === catId);
-    const usedLim = limits.some((x) => x.categoryId === catId);
-    if (usedTx || usedLim) {
-      showToast("⚠️ Used", false);
-      return;
-    }
-
-    setCategories((prev) => {
-      const copy = { ...prev, [type]: [...(prev[type] || [])] };
-      copy[type] = copy[type].filter((c) => c.id !== catId);
-      return copy;
-    });
-    showToast("✓", true);
   };
 
   // ---------------------------
@@ -972,12 +834,14 @@ export default function HamyonApp() {
     if (!limitForm.categoryId || !amt) return;
 
     if (limitForm.id) {
-      setLimits((prev) => prev.map((l) => (l.id === limitForm.id ? { ...l, categoryId: limitForm.categoryId, amount: amt } : l)));
+      setLimits((prev) =>
+        prev.map((l) => (l.id === limitForm.id ? { ...l, categoryId: limitForm.categoryId, amount: amt } : l))
+      );
     } else {
       setLimits((prev) => [{ id: uid(), categoryId: limitForm.categoryId, amount: amt }, ...prev]);
     }
     showToast("✓", true);
-    setLimitForm({ id: null, categoryId: "food", amount: "" });
+    setLimitForm({ id: null, categoryId: allCats.expense[0]?.id || "food", amount: "" });
   };
 
   const deleteLimit = (id) => {
@@ -990,7 +854,8 @@ export default function HamyonApp() {
   // CRUD: Goals
   // ---------------------------
   const openAddGoal = () => setGoalForm({ id: null, name: "", target: "", current: "0", emoji: "🎯" });
-  const openEditGoal = (g) => setGoalForm({ id: g.id, name: g.name, target: String(g.target), current: String(g.current), emoji: g.emoji || "🎯" });
+  const openEditGoal = (g) =>
+    setGoalForm({ id: g.id, name: g.name, target: String(g.target), current: String(g.current), emoji: g.emoji || "🎯" });
 
   const saveGoal = () => {
     const name = (goalForm.name || "").trim();
@@ -1016,19 +881,15 @@ export default function HamyonApp() {
   const depositToGoal = (goalId, delta) => {
     const d = Number(delta || 0);
     if (!d) return;
-    setGoals((prev) =>
-      prev.map((g) => (g.id === goalId ? { ...g, current: clamp((g.current || 0) + d, 0, g.target || 0) } : g))
-    );
+    setGoals((prev) => prev.map((g) => (g.id === goalId ? { ...g, current: clamp((g.current || 0) + d, 0, g.target || 0) } : g)));
     showToast("✓", true);
   };
 
   // ---------------------------
-  // Open bot link safely
+  // Open bot
   // ---------------------------
   const openBot = () => {
-    // Put your bot username here (not token)
-    const BOT_USERNAME = "hamyonmoneybot"; // <-- change if needed
-
+    const BOT_USERNAME = "hamyonmoneybot"; // change if needed
     if (window.Telegram?.WebApp?.openTelegramLink) {
       window.Telegram.WebApp.openTelegramLink(`https://t.me/${BOT_USERNAME}`);
     } else {
@@ -1037,16 +898,13 @@ export default function HamyonApp() {
   };
 
   // ---------------------------
-  // UI Screens
+  // UI
   // ---------------------------
   const Header = () => (
     <header className="px-5 pt-6 pb-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div
-            className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold"
-            style={{ background: THEME.gradient.primary }}
-          >
+          <div className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold" style={{ background: THEME.gradient.primary }}>
             {(tgUser?.first_name || "U").charAt(0)}
           </div>
           <div>
@@ -1060,11 +918,7 @@ export default function HamyonApp() {
         </div>
         <button
           className="text-2xl font-black tracking-tight"
-          style={{
-            background: THEME.gradient.primary,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
+          style={{ background: THEME.gradient.primary, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
           onClick={() => setShowSettingsScreen(true)}
           title={t.settings}
         >
@@ -1151,10 +1005,10 @@ export default function HamyonApp() {
     <div className="px-5 mb-4">
       <div className="grid grid-cols-2 gap-3">
         {[
-          { icon: "➕", label: t.addTransaction, action: () => setShowAddTx(true), grad: THEME.gradient.primary },
-          { icon: "🎯", label: t.limits, action: () => setShowLimitsScreen(true), grad: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)" },
+          { icon: "➕", label: t.addExpense, action: () => openAddTx("expense"), grad: THEME.gradient.primary },
+          { icon: "💰", label: t.addIncome, action: () => openAddTx("income"), grad: THEME.gradient.success },
           { icon: "📁", label: t.categories, action: () => setShowCategories(true), grad: THEME.gradient.blue },
-          { icon: "🎯", label: t.goals, action: () => setShowGoalsScreen(true), grad: THEME.gradient.success },
+          { icon: "🎯", label: t.limits, action: () => setShowLimitsScreen(true), grad: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)" },
         ].map((x, i) => (
           <motion.button
             key={i}
@@ -1219,7 +1073,7 @@ export default function HamyonApp() {
             <p style={{ color: THEME.text.muted }}>{t.empty}</p>
             <div className="mt-4">
               <button
-                onClick={() => setShowAddTx(true)}
+                onClick={() => openAddTx("expense")}
                 className="px-4 py-3 rounded-2xl font-semibold"
                 style={{ background: THEME.gradient.primary, color: "#000" }}
               >
@@ -1270,13 +1124,21 @@ export default function HamyonApp() {
         <GlassCard className="p-4">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="font-semibold" style={{ color: THEME.text.primary }}>🤖</p>
-              <p className="text-sm" style={{ color: THEME.text.muted }}>{t.botHint}</p>
+              <p className="font-semibold" style={{ color: THEME.text.primary }}>
+                🤖
+              </p>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {t.botHint}
+              </p>
             </div>
             <button
               onClick={openBot}
               className="px-4 py-3 rounded-2xl font-semibold"
-              style={{ background: "rgba(249,115,22,0.15)", color: THEME.accent.primary, border: "1px solid rgba(255,255,255,0.05)" }}
+              style={{
+                background: "rgba(249,115,22,0.15)",
+                color: THEME.accent.primary,
+                border: "1px solid rgba(255,255,255,0.05)",
+              }}
             >
               {t.openBot}
             </button>
@@ -1298,6 +1160,7 @@ export default function HamyonApp() {
 
   // ---------------------------
   // Add/Edit Transaction Modal
+  // (UPDATED: tap category -> if amount empty -> prompt "500000")
   // ---------------------------
   const AddTxModal = () => {
     const type = txForm.type;
@@ -1305,8 +1168,30 @@ export default function HamyonApp() {
 
     const setType = (newType) => {
       const defaultCat =
-        newType === "expense" ? (allCats.expense[0]?.id || "food") : newType === "income" ? (allCats.income[0]?.id || "salary") : (allCats.debt[0]?.id || "borrowed");
+        newType === "expense"
+          ? allCats.expense[0]?.id || "food"
+          : newType === "income"
+          ? allCats.income[0]?.id || "salary"
+          : allCats.debt[0]?.id || "borrowed";
       setTxForm((p) => ({ ...p, type: newType, categoryId: defaultCat }));
+    };
+
+    const handleCategoryPick = (c) => {
+      setTxForm((p) => ({ ...p, categoryId: c.id }));
+
+      // If amount is empty -> ask amount immediately (fast flow)
+      if (!txForm.amount) {
+        const v = prompt(`${catLabel(c)} — ${t.amount} (UZS)`, "500000");
+        if (v === null) return;
+        const num = String(v).replace(/[^\d]/g, "");
+        if (!num) return;
+        setTxForm((p) => ({
+          ...p,
+          categoryId: c.id,
+          amount: num,
+          description: p.description || catLabel(c),
+        }));
+      }
     };
 
     return (
@@ -1344,7 +1229,9 @@ export default function HamyonApp() {
 
         <div className="space-y-3">
           <div>
-            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>{t.amount} (UZS)</label>
+            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>
+              {t.amount} (UZS)
+            </label>
             <input
               value={txForm.amount}
               onChange={(e) => setTxForm((p) => ({ ...p, amount: e.target.value }))}
@@ -1356,7 +1243,9 @@ export default function HamyonApp() {
           </div>
 
           <div>
-            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>{t.description}</label>
+            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>
+              {t.description}
+            </label>
             <input
               value={txForm.description}
               onChange={(e) => setTxForm((p) => ({ ...p, description: e.target.value }))}
@@ -1368,7 +1257,9 @@ export default function HamyonApp() {
           </div>
 
           <div>
-            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>{t.date}</label>
+            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>
+              {t.date}
+            </label>
             <input
               value={txForm.date}
               onChange={(e) => setTxForm((p) => ({ ...p, date: e.target.value }))}
@@ -1379,12 +1270,14 @@ export default function HamyonApp() {
           </div>
 
           <div>
-            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>{t.category}</label>
+            <label className="text-sm block mb-2" style={{ color: THEME.text.muted }}>
+              {t.category}
+            </label>
             <div className="grid grid-cols-4 gap-2">
               {cats.map((c) => (
                 <button
                   key={c.id}
-                  onClick={() => setTxForm((p) => ({ ...p, categoryId: c.id }))}
+                  onClick={() => handleCategoryPick(c)}
                   className="p-3 rounded-2xl flex flex-col items-center gap-1"
                   style={{
                     background: txForm.categoryId === c.id ? `${c.color}30` : THEME.bg.card,
@@ -1408,11 +1301,7 @@ export default function HamyonApp() {
             >
               {t.cancel}
             </button>
-            <button
-              onClick={saveTx}
-              className="flex-1 py-4 rounded-2xl font-semibold"
-              style={{ background: THEME.gradient.primary, color: "#000" }}
-            >
+            <button onClick={saveTx} className="flex-1 py-4 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
               {t.save}
             </button>
           </div>
@@ -1422,28 +1311,100 @@ export default function HamyonApp() {
   };
 
   // ---------------------------
-  // Categories Screen (CRUD)
+  // Categories Screen (UPDATED: inline edit + simple add via prompts)
   // ---------------------------
   const CategoriesScreen = () => {
     const [activeType, setActiveType] = useState("expense");
     const list = allCats[activeType] || [];
 
+    const [editInlineId, setEditInlineId] = useState(null);
+    const [editName, setEditName] = useState("");
+
+    const startInlineEdit = (cat) => {
+      setEditInlineId(cat.id);
+      setEditName(catLabel(cat));
+    };
+
+    const saveInlineEdit = (cat) => {
+      const name = (editName || "").trim();
+      if (!name) return;
+
+      setCategories((prev) => {
+        const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
+        const idx = copy[activeType].findIndex((c) => c.id === cat.id);
+        if (idx >= 0) {
+          const old = copy[activeType][idx];
+          const patch = lang === "uz" ? { uz: name } : lang === "ru" ? { ru: name } : { en: name };
+          copy[activeType][idx] = { ...old, ...patch, custom: true };
+        }
+        return copy;
+      });
+
+      setEditInlineId(null);
+      setEditName("");
+      showToast("✓", true);
+    };
+
+    const cancelInlineEdit = () => {
+      setEditInlineId(null);
+      setEditName("");
+    };
+
+    const addCategorySimple = () => {
+      const name = prompt(`${t.addCategory}: ${t.description}`, "");
+      if (name === null) return;
+      const nm = String(name).trim();
+      if (!nm) return;
+
+      const emoji = prompt("Emoji (optional)", "📦");
+      if (emoji === null) return;
+
+      const color = prompt("Color hex (optional)", "#90A4AE");
+      if (color === null) return;
+
+      const newId = uid().slice(0, 8);
+      const newCat = {
+        id: newId,
+        uz: nm,
+        ru: nm,
+        en: nm,
+        emoji: String(emoji || "📦").trim() || "📦",
+        color: String(color || "#90A4AE").trim() || "#90A4AE",
+        custom: true,
+      };
+
+      setCategories((prev) => {
+        const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
+        copy[activeType].unshift(newCat);
+        return copy;
+      });
+
+      showToast("✓", true);
+    };
+
+    const deleteCategory = (type, catId) => {
+      if (!confirm(t.confirmDelete)) return;
+
+      const usedTx = transactions.some((x) => x.categoryId === catId);
+      const usedLim = limits.some((x) => x.categoryId === catId);
+      if (usedTx || usedLim) {
+        showToast("⚠️ Used", false);
+        return;
+      }
+
+      setCategories((prev) => {
+        const copy = { ...prev, [type]: [...(prev[type] || [])] };
+        copy[type] = copy[type].filter((c) => c.id !== catId);
+        return copy;
+      });
+      showToast("✓", true);
+    };
+
     return (
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        className="fixed inset-0 z-50 overflow-y-auto"
-        style={{ background: THEME.bg.primary }}
-      >
+      <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
         <div className="p-5 pb-28">
           <div className="flex items-center gap-4 mb-6">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setShowCategories(false)}
-              className="w-10 h-10 rounded-xl flex items-center justify-center"
-              style={{ background: THEME.bg.card }}
-            >
+            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowCategories(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
               ←
             </motion.button>
             <div className="flex-1">
@@ -1451,17 +1412,10 @@ export default function HamyonApp() {
                 {t.categories}
               </h1>
               <p className="text-sm" style={{ color: THEME.text.muted }}>
-                {list.length} • {t.edit} / {t.delete}
+                {list.length}
               </p>
             </div>
-            <button
-              onClick={() => {
-                openAddCategory(activeType);
-                setCatEditId(null);
-              }}
-              className="px-4 py-3 rounded-2xl font-semibold"
-              style={{ background: THEME.gradient.primary, color: "#000" }}
-            >
+            <button onClick={addCategorySimple} className="px-4 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
               + {t.addCategory}
             </button>
           </div>
@@ -1474,7 +1428,10 @@ export default function HamyonApp() {
             ].map((tab) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveType(tab.key)}
+                onClick={() => {
+                  setActiveType(tab.key);
+                  cancelInlineEdit();
+                }}
                 className="flex-1 py-3 rounded-xl flex items-center justify-center gap-2 transition-all"
                 style={{
                   background: activeType === tab.key ? THEME.bg.card : "transparent",
@@ -1504,17 +1461,49 @@ export default function HamyonApp() {
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl" style={{ background: `${cat.color}30` }}>
                       {cat.emoji}
                     </div>
-                    <div className="flex-1">
-                      <p className="font-medium" style={{ color: THEME.text.primary }}>
-                        {catLabel(cat)}
-                      </p>
-                      <p className="text-xs" style={{ color: THEME.text.muted }}>
-                        id: {cat.id} {activeType === "expense" ? `• ${formatUZS(monthSpentByCategory(cat.id))} UZS` : ""}
-                      </p>
+
+                    <div className="flex-1 min-w-0">
+                      {editInlineId === cat.id ? (
+                        <div className="flex items-center gap-2">
+                          <input
+                            value={editName}
+                            onChange={(e) => setEditName(e.target.value)}
+                            className="flex-1 p-3 rounded-xl"
+                            style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
+                            autoFocus
+                          />
+                          <button
+                            onClick={() => saveInlineEdit(cat)}
+                            className="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style={{ background: "rgba(34,197,94,0.18)" }}
+                            title="Save"
+                          >
+                            💾
+                          </button>
+                          <button
+                            onClick={cancelInlineEdit}
+                            className="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style={{ background: "rgba(239,68,68,0.18)" }}
+                            title="Cancel"
+                          >
+                            ✖
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
+                            {catLabel(cat)}
+                          </p>
+                          <p className="text-xs" style={{ color: THEME.text.muted }}>
+                            {activeType === "expense" ? `${formatUZS(monthSpentByCategory(cat.id))} UZS (month)` : ""}
+                          </p>
+                        </>
+                      )}
                     </div>
+
                     <div className="flex gap-2">
                       <button
-                        onClick={() => openEditCategory(activeType, cat)}
+                        onClick={() => startInlineEdit(cat)}
                         className="w-9 h-9 rounded-lg flex items-center justify-center"
                         style={{ background: "rgba(56, 189, 248, 0.18)" }}
                         title={t.edit}
@@ -1535,98 +1524,6 @@ export default function HamyonApp() {
               ))
             )}
           </div>
-
-          <div className="mt-6">
-            <GlassCard className="p-5">
-              <p className="font-semibold" style={{ color: THEME.text.primary }}>
-                {catEditId ? t.editCategory : t.addCategory}
-              </p>
-              <p className="text-sm mb-4" style={{ color: THEME.text.muted }}>
-                {t.type}: <b style={{ color: THEME.text.primary }}>{activeType}</b>
-              </p>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>{t.categoryNameUz}</label>
-                  <input
-                    value={catForm.uz}
-                    onChange={(e) => setCatForm((p) => ({ ...p, type: activeType, uz: e.target.value }))}
-                    className="w-full p-3 rounded-2xl"
-                    style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  />
-                </div>
-                <div>
-                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>{t.categoryNameRu}</label>
-                  <input
-                    value={catForm.ru}
-                    onChange={(e) => setCatForm((p) => ({ ...p, type: activeType, ru: e.target.value }))}
-                    className="w-full p-3 rounded-2xl"
-                    style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  />
-                </div>
-                <div>
-                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>{t.categoryNameEn}</label>
-                  <input
-                    value={catForm.en}
-                    onChange={(e) => setCatForm((p) => ({ ...p, type: activeType, en: e.target.value }))}
-                    className="w-full p-3 rounded-2xl"
-                    style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  />
-                </div>
-                <div>
-                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>id</label>
-                  <input
-                    value={catForm.id}
-                    onChange={(e) => setCatForm((p) => ({ ...p, type: activeType, id: e.target.value }))}
-                    className="w-full p-3 rounded-2xl"
-                    style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                    placeholder="coffee2"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>{t.emoji}</label>
-                  <input
-                    value={catForm.emoji}
-                    onChange={(e) => setCatForm((p) => ({ ...p, type: activeType, emoji: e.target.value }))}
-                    className="w-full p-3 rounded-2xl"
-                    style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                    placeholder="☕"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>{t.color}</label>
-                  <input
-                    value={catForm.color}
-                    onChange={(e) => setCatForm((p) => ({ ...p, type: activeType, color: e.target.value }))}
-                    className="w-full p-3 rounded-2xl"
-                    style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                    placeholder="#FF6B6B"
-                  />
-                </div>
-              </div>
-
-              <div className="flex gap-3 mt-4">
-                <button
-                  onClick={() => {
-                    setCatEditId(null);
-                    openAddCategory(activeType);
-                  }}
-                  className="flex-1 py-3 rounded-2xl font-semibold"
-                  style={{ background: THEME.bg.card, color: THEME.text.secondary, border: "1px solid rgba(255,255,255,0.06)" }}
-                >
-                  {t.cancel}
-                </button>
-                <button
-                  onClick={saveCategory}
-                  className="flex-1 py-3 rounded-2xl font-semibold"
-                  style={{ background: THEME.gradient.primary, color: "#000" }}
-                >
-                  {t.save}
-                </button>
-              </div>
-            </GlassCard>
-          </div>
         </div>
       </motion.div>
     );
@@ -1636,21 +1533,10 @@ export default function HamyonApp() {
   // Limits screen
   // ---------------------------
   const LimitsScreen = () => (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
+    <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
       <div className="p-5 pb-28">
         <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowLimitsScreen(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
-          >
+          <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowLimitsScreen(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
             ←
           </motion.button>
           <div className="flex-1">
@@ -1662,12 +1548,8 @@ export default function HamyonApp() {
             </p>
           </div>
 
-          <button
-            onClick={openAddLimit}
-            className="px-4 py-3 rounded-2xl font-semibold"
-            style={{ background: THEME.gradient.primary, color: "#000" }}
-          >
-            + {t.addLimit}
+          <button onClick={openAddLimit} className="px-4 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
+            + {t.limits}
           </button>
         </div>
 
@@ -1702,12 +1584,7 @@ export default function HamyonApp() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p
-                        className="text-xl font-bold"
-                        style={{
-                          color: isOver ? THEME.accent.danger : isNear ? THEME.accent.warning : THEME.accent.success,
-                        }}
-                      >
+                      <p className="text-xl font-bold" style={{ color: isOver ? THEME.accent.danger : isNear ? THEME.accent.warning : THEME.accent.success }}>
                         {clamp(pct, 0, 999)}%
                       </p>
                       <div className="flex gap-2 justify-end mt-1">
@@ -1745,7 +1622,7 @@ export default function HamyonApp() {
         <div className="mt-6">
           <GlassCard className="p-5">
             <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
-              {limitForm.id ? t.editLimit : t.addLimit}
+              {limitForm.id ? t.edit : t.add}
             </p>
 
             <div className="grid grid-cols-2 gap-3">
@@ -1769,7 +1646,7 @@ export default function HamyonApp() {
 
               <div className="col-span-2">
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.limitAmount} (UZS)
+                  {t.amount} (UZS)
                 </label>
                 <input
                   value={limitForm.amount}
@@ -1790,11 +1667,7 @@ export default function HamyonApp() {
               >
                 {t.cancel}
               </button>
-              <button
-                onClick={saveLimit}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: THEME.gradient.primary, color: "#000" }}
-              >
+              <button onClick={saveLimit} className="flex-1 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
                 {t.save}
               </button>
             </div>
@@ -1805,7 +1678,7 @@ export default function HamyonApp() {
   );
 
   // ---------------------------
-  // Transactions screen (filter + edit + delete)
+  // Transactions screen
   // ---------------------------
   const TransactionsScreen = () => {
     const [filter, setFilter] = useState("all"); // all|expense|income|debt|today|week|month
@@ -1823,21 +1696,10 @@ export default function HamyonApp() {
     }, [filter, transactions]);
 
     return (
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        className="fixed inset-0 z-50 overflow-y-auto"
-        style={{ background: THEME.bg.primary }}
-      >
+      <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
         <div className="p-5 pb-28">
           <div className="flex items-center gap-4 mb-6">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setShowTransactionsScreen(false)}
-              className="w-10 h-10 rounded-xl flex items-center justify-center"
-              style={{ background: THEME.bg.card }}
-            >
+            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowTransactionsScreen(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
               ←
             </motion.button>
             <div className="flex-1">
@@ -1848,11 +1710,7 @@ export default function HamyonApp() {
                 {filtered.length} / {transactions.length}
               </p>
             </div>
-            <button
-              onClick={() => openAddTx("expense")}
-              className="px-4 py-3 rounded-2xl font-semibold"
-              style={{ background: THEME.gradient.primary, color: "#000" }}
-            >
+            <button onClick={() => openAddTx("expense")} className="px-4 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
               + {t.add}
             </button>
           </div>
@@ -1871,10 +1729,7 @@ export default function HamyonApp() {
                 key={x.k}
                 onClick={() => setFilter(x.k)}
                 className="px-4 py-2 rounded-xl whitespace-nowrap text-sm font-medium"
-                style={{
-                  background: filter === x.k ? THEME.accent.primary : THEME.bg.card,
-                  color: filter === x.k ? "#000" : THEME.text.secondary,
-                }}
+                style={{ background: filter === x.k ? THEME.accent.primary : THEME.bg.card, color: filter === x.k ? "#000" : THEME.text.secondary }}
               >
                 {x.label}
               </button>
@@ -1933,21 +1788,10 @@ export default function HamyonApp() {
   // Analytics screen
   // ---------------------------
   const AnalyticsScreen = () => (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
+    <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
       <div className="p-5 pb-28">
         <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowAnalyticsScreen(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
-          >
+          <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowAnalyticsScreen(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
             ←
           </motion.button>
           <div className="flex-1">
@@ -2002,13 +1846,17 @@ export default function HamyonApp() {
           </h3>
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 rounded-2xl" style={{ background: "rgba(239,68,68,0.10)" }}>
-              <p className="text-xs" style={{ color: THEME.text.muted }}>{t.weekSpending}</p>
+              <p className="text-xs" style={{ color: THEME.text.muted }}>
+                {t.weekSpending}
+              </p>
               <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
                 -{formatUZS(weekSpend)} UZS
               </p>
             </div>
             <div className="p-4 rounded-2xl" style={{ background: "rgba(239,68,68,0.10)" }}>
-              <p className="text-xs" style={{ color: THEME.text.muted }}>{t.monthSpending}</p>
+              <p className="text-xs" style={{ color: THEME.text.muted }}>
+                {t.monthSpending}
+              </p>
               <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
                 -{formatUZS(monthSpend)} UZS
               </p>
@@ -2020,7 +1868,7 @@ export default function HamyonApp() {
   );
 
   // ---------------------------
-  // Debts screen (simple based on debt tx)
+  // Debts screen
   // ---------------------------
   const DebtsScreen = () => {
     const debtTx = transactions.filter((x) => x.type === "debt");
@@ -2028,45 +1876,42 @@ export default function HamyonApp() {
     const owedToMe = debtTx.filter((x) => x.amount > 0).reduce((s, x) => s + x.amount, 0);
 
     return (
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        className="fixed inset-0 z-50 overflow-y-auto"
-        style={{ background: THEME.bg.primary }}
-      >
+      <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
         <div className="p-5 pb-28">
           <div className="flex items-center gap-4 mb-6">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setShowDebtsScreen(false)}
-              className="w-10 h-10 rounded-xl flex items-center justify-center"
-              style={{ background: THEME.bg.card }}
-            >
+            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowDebtsScreen(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
               ←
             </motion.button>
             <div>
-              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>{t.debts}</h1>
-              <p className="text-sm" style={{ color: THEME.text.muted }}>{debtTx.length}</p>
+              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
+                {t.debts}
+              </h1>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {debtTx.length}
+              </p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3 mb-6">
             <GlassCard className="p-4 text-center" gradient="linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%)">
-              <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>Men qarzdorman</p>
-              <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>{formatUZS(owedByMe)} UZS</p>
+              <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>
+                Men qarzdorman
+              </p>
+              <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
+                {formatUZS(owedByMe)} UZS
+              </p>
             </GlassCard>
             <GlassCard className="p-4 text-center" gradient="linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%)">
-              <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>Menga qarzdor</p>
-              <p className="text-xl font-bold" style={{ color: THEME.accent.success }}>{formatUZS(owedToMe)} UZS</p>
+              <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>
+                Menga qarzdor
+              </p>
+              <p className="text-xl font-bold" style={{ color: THEME.accent.success }}>
+                {formatUZS(owedToMe)} UZS
+              </p>
             </GlassCard>
           </div>
 
-          <button
-            onClick={() => openAddTx("debt")}
-            className="w-full py-4 rounded-2xl font-semibold mb-6"
-            style={{ background: THEME.gradient.primary, color: "#000" }}
-          >
+          <button onClick={() => openAddTx("debt")} className="w-full py-4 rounded-2xl font-semibold mb-6" style={{ background: THEME.gradient.primary, color: "#000" }}>
             + {t.addTransaction}
           </button>
 
@@ -2086,11 +1931,16 @@ export default function HamyonApp() {
                         {c.emoji}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium truncate" style={{ color: THEME.text.primary }}>{tx.description}</p>
-                        <p className="text-xs" style={{ color: THEME.text.muted }}>{tx.date} • {catLabel(c)}</p>
+                        <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
+                          {tx.description}
+                        </p>
+                        <p className="text-xs" style={{ color: THEME.text.muted }}>
+                          {tx.date} • {catLabel(c)}
+                        </p>
                       </div>
                       <p className="font-bold" style={{ color: tx.amount > 0 ? THEME.accent.success : THEME.accent.danger }}>
-                        {tx.amount > 0 ? "+" : ""}{formatUZS(tx.amount)} UZS
+                        {tx.amount > 0 ? "+" : ""}
+                        {formatUZS(tx.amount)} UZS
                       </p>
                     </div>
                   </GlassCard>
@@ -2104,27 +1954,13 @@ export default function HamyonApp() {
   };
 
   // ---------------------------
-  // Goals screen (CRUD + deposit)
-  // ---------------------------
-    // ---------------------------
-  // Goals screen (CRUD + deposit)
+  // Goals screen
   // ---------------------------
   const GoalsScreen = () => (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
+    <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
       <div className="p-5 pb-28">
         <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowGoalsScreen(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
-          >
+          <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowGoalsScreen(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
             ←
           </motion.button>
           <div className="flex-1">
@@ -2135,12 +1971,8 @@ export default function HamyonApp() {
               {goals.length}
             </p>
           </div>
-          <button
-            onClick={openAddGoal}
-            className="px-4 py-3 rounded-2xl font-semibold"
-            style={{ background: THEME.gradient.primary, color: "#000" }}
-          >
-            + {t.addGoal}
+          <button onClick={openAddGoal} className="px-4 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
+            + {t.add}
           </button>
         </div>
 
@@ -2158,10 +1990,7 @@ export default function HamyonApp() {
                 <GlassCard key={g.id} className="p-5">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex items-start gap-3">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
-                        style={{ background: "rgba(139,92,246,0.18)" }}
-                      >
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "rgba(139,92,246,0.18)" }}>
                         {g.emoji || "🎯"}
                       </div>
                       <div>
@@ -2169,31 +1998,20 @@ export default function HamyonApp() {
                           {g.name}
                         </p>
                         <p className="text-sm" style={{ color: THEME.text.muted }}>
-                          {t.currentAmount}: {formatUZS(g.current)} / {formatUZS(g.target)} UZS
+                          {formatUZS(g.current)} / {formatUZS(g.target)} UZS
                         </p>
                       </div>
                     </div>
 
                     <div className="text-right">
-                      <p
-                        className="text-xl font-bold"
-                        style={{ color: done ? THEME.accent.success : THEME.accent.purple }}
-                      >
+                      <p className="text-xl font-bold" style={{ color: done ? THEME.accent.success : THEME.accent.purple }}>
                         {clamp(pct, 0, 999)}%
                       </p>
                       <div className="flex gap-2 justify-end mt-1">
-                        <button
-                          onClick={() => openEditGoal(g)}
-                          className="text-xs"
-                          style={{ color: THEME.accent.info }}
-                        >
+                        <button onClick={() => openEditGoal(g)} className="text-xs" style={{ color: THEME.accent.info }}>
                           {t.edit}
                         </button>
-                        <button
-                          onClick={() => deleteGoal(g.id)}
-                          className="text-xs"
-                          style={{ color: THEME.accent.danger }}
-                        >
+                        <button onClick={() => deleteGoal(g.id)} className="text-xs" style={{ color: THEME.accent.danger }}>
                           {t.delete}
                         </button>
                       </div>
@@ -2213,25 +2031,25 @@ export default function HamyonApp() {
                   <div className="mt-4 grid grid-cols-2 gap-3">
                     <button
                       onClick={() => {
-                        const v = prompt(`${t.deposit} (UZS)`, "50000");
+                        const v = prompt(`+ (UZS)`, "50000");
                         if (v === null) return;
                         depositToGoal(g.id, Math.abs(Number(v || 0)));
                       }}
                       className="py-3 rounded-2xl font-semibold"
                       style={{ background: "rgba(34,197,94,0.16)", color: THEME.accent.success, border: "1px solid rgba(255,255,255,0.06)" }}
                     >
-                      + {t.deposit}
+                      + {I18N[lang]?.deposit || "Deposit"}
                     </button>
                     <button
                       onClick={() => {
-                        const v = prompt(`${t.withdraw} (UZS)`, "50000");
+                        const v = prompt(`- (UZS)`, "50000");
                         if (v === null) return;
                         depositToGoal(g.id, -Math.abs(Number(v || 0)));
                       }}
                       className="py-3 rounded-2xl font-semibold"
                       style={{ background: "rgba(239,68,68,0.14)", color: THEME.accent.danger, border: "1px solid rgba(255,255,255,0.06)" }}
                     >
-                      − {t.withdraw}
+                      − {I18N[lang]?.withdraw || "Withdraw"}
                     </button>
                   </div>
                 </GlassCard>
@@ -2240,17 +2058,16 @@ export default function HamyonApp() {
           )}
         </div>
 
-        {/* Goal form */}
         <div className="mt-6">
           <GlassCard className="p-5">
             <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
-              {goalForm.id ? t.editGoal : t.addGoal}
+              {goalForm.id ? t.edit : t.add}
             </p>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.goalName}
+                  {t.description}
                 </label>
                 <input
                   value={goalForm.name}
@@ -2263,7 +2080,7 @@ export default function HamyonApp() {
 
               <div>
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.targetAmount} (UZS)
+                  {t.amount} (UZS)
                 </label>
                 <input
                   value={goalForm.target}
@@ -2277,7 +2094,7 @@ export default function HamyonApp() {
 
               <div>
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.currentAmount} (UZS)
+                  Saved (UZS)
                 </label>
                 <input
                   value={goalForm.current}
@@ -2291,7 +2108,7 @@ export default function HamyonApp() {
 
               <div className="col-span-2">
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.emoji}
+                  Emoji
                 </label>
                 <input
                   value={goalForm.emoji}
@@ -2311,11 +2128,7 @@ export default function HamyonApp() {
               >
                 {t.cancel}
               </button>
-              <button
-                onClick={saveGoal}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: THEME.gradient.primary, color: "#000" }}
-              >
+              <button onClick={saveGoal} className="flex-1 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
                 {t.save}
               </button>
             </div>
@@ -2329,21 +2142,10 @@ export default function HamyonApp() {
   // Settings screen
   // ---------------------------
   const SettingsScreen = () => (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
+    <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 z-50 overflow-y-auto" style={{ background: THEME.bg.primary }}>
       <div className="p-5 pb-28">
         <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowSettingsScreen(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
-          >
+          <motion.button whileTap={{ scale: 0.9 }} onClick={() => setShowSettingsScreen(false)} className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: THEME.bg.card }}>
             ←
           </motion.button>
           <div className="flex-1">
@@ -2433,16 +2235,7 @@ export default function HamyonApp() {
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => {
-                const payload = {
-                  v: 1,
-                  lang,
-                  balance,
-                  transactions,
-                  limits,
-                  goals,
-                  categories,
-                  exportedAt: new Date().toISOString(),
-                };
+                const payload = { v: 1, lang, balance, transactions, limits, goals, categories, exportedAt: new Date().toISOString() };
                 const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
@@ -2469,7 +2262,6 @@ export default function HamyonApp() {
                   const text = await file.text();
                   try {
                     const obj = JSON.parse(text);
-                    if (!obj) throw new Error("bad");
                     setLang(obj.lang || "uz");
                     setBalance(Number(obj.balance || 0));
                     setTransactions(Array.isArray(obj.transactions) ? obj.transactions : []);
@@ -2504,7 +2296,7 @@ export default function HamyonApp() {
               className="w-full py-4 rounded-2xl font-semibold"
               style={{ background: "rgba(239,68,68,0.14)", color: THEME.accent.danger, border: "1px solid rgba(255,255,255,0.06)" }}
             >
-              🗑 Reset local data
+              🗑 {t.resetLocal}
             </button>
           </div>
         </GlassCard>
@@ -2516,14 +2308,8 @@ export default function HamyonApp() {
   // Bottom navigation
   // ---------------------------
   const BottomNav = () => (
-    <div
-      className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4"
-      style={{ background: "linear-gradient(to top, rgba(15,15,20,0.95), rgba(15,15,20,0.0))" }}
-    >
-      <div
-        className="mx-auto max-w-md rounded-3xl p-2 flex items-center justify-between"
-        style={{ background: "rgba(28,28,38,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}
-      >
+    <div className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4" style={{ background: "linear-gradient(to top, rgba(15,15,20,0.95), rgba(15,15,20,0.0))" }}>
+      <div className="mx-auto max-w-md rounded-3xl p-2 flex items-center justify-between" style={{ background: "rgba(28,28,38,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}>
         {[
           { label: t.home, icon: "🏠", onClick: () => {} },
           { label: t.transactions, icon: "🧾", onClick: () => setShowTransactionsScreen(true) },
@@ -2534,12 +2320,8 @@ export default function HamyonApp() {
           <button
             key={i}
             onClick={x.onClick}
-            className={`flex-1 py-3 rounded-2xl flex flex-col items-center justify-center gap-1 ${x.primary ? "" : ""}`}
-            style={{
-              background: x.primary ? THEME.gradient.primary : "transparent",
-              color: x.primary ? "#000" : THEME.text.secondary,
-              margin: x.primary ? "0 6px" : 0,
-            }}
+            className="flex-1 py-3 rounded-2xl flex flex-col items-center justify-center gap-1"
+            style={{ background: x.primary ? THEME.gradient.primary : "transparent", color: x.primary ? "#000" : THEME.text.secondary, margin: x.primary ? "0 6px" : 0 }}
           >
             <span className="text-xl">{x.icon}</span>
             <span className="text-[11px] font-semibold">{x.label}</span>
@@ -2559,12 +2341,7 @@ export default function HamyonApp() {
 
       <AnimatePresence>
         {toast && (
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0 }}
-            className="fixed bottom-24 left-0 right-0 z-50 flex justify-center px-4"
-          >
+          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} className="fixed bottom-24 left-0 right-0 z-50 flex justify-center px-4">
             <div
               className="px-4 py-3 rounded-2xl text-sm font-semibold"
               style={{
