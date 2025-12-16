@@ -3,18 +3,19 @@
 // Smart Finance Tracker - ALL FEATURES FREE
 // ============================================
 
-import { Bot, session, InlineKeyboard } from 'grammy';
+import { Bot, InlineKeyboard } from 'grammy';
 import { createClient } from '@supabase/supabase-js';
+import 'dotenv/config';
 
 // ============================================
 // CONFIGURATION
 // ============================================
 const config = {
-  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN!,
-  SUPABASE_URL: process.env.SUPABASE_URL!,
-  SUPABASE_KEY: process.env.SUPABASE_ANON_KEY!,
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY!,
-  WEBAPP_URL: 'https://t.me/hamyon_uz_bot/app',
+  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || '',
+  SUPABASE_URL: process.env.SUPABASE_URL || '',
+  SUPABASE_KEY: process.env.SUPABASE_ANON_KEY || '',
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
+  WEBAPP_URL: process.env.WEBAPP_URL || 'https://t.me/hamyonmoneybot/app',
 };
 
 const supabase = createClient(config.SUPABASE_URL, config.SUPABASE_KEY);
@@ -85,11 +86,6 @@ const CATEGORIES = {
 };
 
 // ============================================
-// SESSION
-// ============================================
-bot.use(session({ initial: () => ({ step: 'ready' }) }));
-
-// ============================================
 // DATABASE HELPERS
 // ============================================
 async function getOrCreateUser(telegramId: number, firstName: string, lastName?: string) {
@@ -142,7 +138,12 @@ async function getTodayStats(telegramId: number) {
   const today = new Date().toISOString().split('T')[0];
   const { data } = await supabase.from('transactions').select('amount').eq('user_telegram_id', telegramId).gte('created_at', today);
   let expenses = 0, income = 0;
-  (data || []).forEach(tx => { if (tx.amount < 0) expenses += Math.abs(tx.amount); else income += tx.amount; });
+  if (data) {
+    data.forEach((tx) => { 
+      if (tx.amount < 0) expenses += Math.abs(tx.amount); 
+      else income += tx.amount; 
+    });
+  }
   return { expenses, income, count: data?.length || 0 };
 }
 
@@ -151,18 +152,39 @@ async function getTodayStats(telegramId: number) {
 // ============================================
 function parseAmount(text: string): number | null {
   const lower = text.toLowerCase();
-  const millionMatch = lower.match(/(\d+(?:[.,]\d+)?)\s*(?:m|mln|million|миллион|млн)/i);
+  
+  // Million: 5m, 5 million, 5 mln, 5 миллион, 5 млн, 5 million
+  // Note: "m" alone should only match if it's clearly meant as million (e.g., "5m" not "5ming")
+  const millionMatch = lower.match(/(\d+(?:[.,]\d+)?)\s*(?:mln|million|миллион|млн)\b/i);
   if (millionMatch) return parseFloat(millionMatch[1].replace(',', '.')) * 1000000;
-  const kMatch = lower.match(/(\d+(?:[.,]\d+)?)\s*(?:k|к|тысяч|ming|минг)/i);
+  
+  // Check for standalone "m" (like "5m") but NOT "ming"
+  const mMatch = lower.match(/(\d+(?:[.,]\d+)?)\s*m(?!ing)\b/i);
+  if (mMatch) return parseFloat(mMatch[1].replace(',', '.')) * 1000000;
+  
+  // Thousand: 50k, 50 тысяч, 50 ming, 50 минг, 150ming
+  const kMatch = lower.match(/(\d+(?:[.,]\d+)?)\s*(?:k|к|тысяч|ming|минг)\b/i);
   if (kMatch) return parseFloat(kMatch[1].replace(',', '.')) * 1000;
+  
+  // Formatted numbers: 50,000 or 50 000
   const formattedMatch = text.match(/(\d{1,3}(?:[,\s]\d{3})+)/);
   if (formattedMatch) return parseInt(formattedMatch[1].replace(/[,\s]/g, ''));
+  
+  // Simple number (at least 100 UZS)
   const simpleMatch = text.match(/(\d+)/);
   if (simpleMatch && parseInt(simpleMatch[1]) >= 100) return parseInt(simpleMatch[1]);
+  
   return null;
 }
 
-function detectCategory(text: string): { id: string; type: 'expense' | 'income'; category: any } {
+interface Category {
+  id: string;
+  name: string;
+  emoji: string;
+  keywords: string[];
+}
+
+function detectCategory(text: string): { id: string; type: 'expense' | 'income'; category: Category } {
   const lower = text.toLowerCase();
   for (const cat of CATEGORIES.income) {
     for (const kw of cat.keywords) { if (lower.includes(kw)) return { id: cat.id, type: 'income', category: cat }; }
@@ -174,9 +196,9 @@ function detectCategory(text: string): { id: string; type: 'expense' | 'income';
   return { id: 'other', type: 'expense', category: defaultCat };
 }
 
-function getCategoryById(id: string) {
+function getCategoryById(id: string): Category {
   const all = [...CATEGORIES.expense, ...CATEGORIES.income];
-  return all.find(c => c.id === id) || { id: 'other', name: 'Boshqa', emoji: '📦' };
+  return all.find(c => c.id === id) || { id: 'other', name: 'Boshqa', emoji: '📦', keywords: [] };
 }
 
 function formatMoney(amount: number): string {
@@ -197,11 +219,16 @@ async function transcribeVoice(fileUrl: string): Promise<string> {
     formData.append('model', 'whisper-1');
     formData.append('language', 'uz');
     const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-      method: 'POST', headers: { 'Authorization': `Bearer ${config.OPENAI_API_KEY}` }, body: formData,
+      method: 'POST', 
+      headers: { 'Authorization': `Bearer ${config.OPENAI_API_KEY}` }, 
+      body: formData,
     });
     const result = await response.json();
     return result.text || '';
-  } catch (error) { console.error('Whisper error:', error); return ''; }
+  } catch (error) { 
+    console.error('Whisper error:', error); 
+    return ''; 
+  }
 }
 
 // ============================================
@@ -211,13 +238,19 @@ async function extractReceiptData(imageUrl: string): Promise<{ amount: number; s
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${config.OPENAI_API_KEY}`, 'Content-Type': 'application/json' },
+      headers: { 
+        'Authorization': `Bearer ${config.OPENAI_API_KEY}`, 
+        'Content-Type': 'application/json' 
+      },
       body: JSON.stringify({
         model: 'gpt-4o',
-        messages: [{ role: 'user', content: [
-          { type: 'text', text: `Chekdan umumiy summa va do'kon nomini ajrating. JSON: {"amount": number, "store": "string"}` },
-          { type: 'image_url', image_url: { url: imageUrl } },
-        ]}],
+        messages: [{ 
+          role: 'user', 
+          content: [
+            { type: 'text', text: `Chekdan umumiy summa va do'kon nomini ajrating. JSON: {"amount": number, "store": "string"}` },
+            { type: 'image_url', image_url: { url: imageUrl } },
+          ]
+        }],
         max_tokens: 150,
       }),
     });
@@ -229,15 +262,22 @@ async function extractReceiptData(imageUrl: string): Promise<{ amount: number; s
       if (!parsed.error && parsed.amount) return { amount: parsed.amount, store: parsed.store || 'Chek' };
     }
     return null;
-  } catch (error) { console.error('Vision error:', error); return null; }
+  } catch (error) { 
+    console.error('Vision error:', error); 
+    return null; 
+  }
 }
 
 // ============================================
 // BOT COMMANDS
 // ============================================
 bot.command('start', async (ctx) => {
-  await getOrCreateUser(ctx.from!.id, ctx.from!.first_name, ctx.from!.last_name);
+  const from = ctx.from;
+  if (!from) return;
+  
+  await getOrCreateUser(from.id, from.first_name, from.last_name);
   const keyboard = new InlineKeyboard().webApp('📊 Hamyon ilovasini ochish', config.WEBAPP_URL);
+  
   await ctx.reply(
     `👋 Salom! Men Hamyon - moliyaviy yordamchingizman.\n\n` +
     `📱 *Tranzaksiya qo'shish usullari:*\n\n` +
@@ -250,9 +290,13 @@ bot.command('start', async (ctx) => {
 });
 
 bot.command('balance', async (ctx) => {
-  const balance = await getBalance(ctx.from!.id);
-  const today = await getTodayStats(ctx.from!.id);
+  const from = ctx.from;
+  if (!from) return;
+  
+  const balance = await getBalance(from.id);
+  const today = await getTodayStats(from.id);
   const keyboard = new InlineKeyboard().webApp('📊 To\'liq ilova', config.WEBAPP_URL);
+  
   await ctx.reply(
     `💰 *Balans: ${formatMoney(balance)}*\n\n📅 Bugun:\n↘️ Xarajat: ${formatMoney(today.expenses)}\n↗️ Daromad: ${formatMoney(today.income)}`,
     { parse_mode: 'Markdown', reply_markup: keyboard }
@@ -271,63 +315,125 @@ bot.command('help', async (ctx) => {
 // VOICE MESSAGE HANDLER
 // ============================================
 bot.on('message:voice', async (ctx) => {
+  const from = ctx.from;
+  const voice = ctx.message?.voice;
+  
+  if (!from || !voice) return;
+  
   await ctx.reply('🎤 Qayta ishlanmoqda...');
+  
   try {
-    const file = await ctx.api.getFile(ctx.message.voice.file_id);
+    const file = await ctx.api.getFile(voice.file_id);
     const fileUrl = `https://api.telegram.org/file/bot${config.BOT_TOKEN}/${file.file_path}`;
     const transcription = await transcribeVoice(fileUrl);
-    if (!transcription) { await ctx.reply('❌ Tushunib bo\'lmadi. Qayta urinib ko\'ring.'); return; }
+    
+    if (!transcription) { 
+      await ctx.reply('❌ Tushunib bo\'lmadi. Qayta urinib ko\'ring.'); 
+      return; 
+    }
+    
     const amount = parseAmount(transcription);
     const { id: categoryId, type, category } = detectCategory(transcription);
-    if (!amount) { await ctx.reply(`📝 Eshitdim: "${transcription}"\n\n❌ Summani aniqlab bo\'lmadi.`); return; }
+    
+    if (!amount) { 
+      await ctx.reply(`📝 Eshitdim: "${transcription}"\n\n❌ Summani aniqlab bo\'lmadi.`); 
+      return; 
+    }
+    
     const finalAmount = type === 'expense' ? -Math.abs(amount) : Math.abs(amount);
-    await saveTransaction(ctx.from!.id, { description: transcription, amount: finalAmount, categoryId, source: 'voice' });
-    const balance = await getBalance(ctx.from!.id);
+    await saveTransaction(from.id, { description: transcription, amount: finalAmount, categoryId, source: 'voice' });
+    const balance = await getBalance(from.id);
     const keyboard = new InlineKeyboard().webApp('📊 Ilovani ochish', config.WEBAPP_URL);
+    
     await ctx.reply(
       `✅ *Saqlandi!*\n\n${category.emoji} ${category.name}\n💸 ${formatMoney(Math.abs(finalAmount))}\n💰 Balans: ${formatMoney(balance)}`,
       { parse_mode: 'Markdown', reply_markup: keyboard }
     );
-  } catch (error) { console.error('Voice error:', error); await ctx.reply('❌ Xatolik yuz berdi.'); }
+  } catch (error) { 
+    console.error('Voice error:', error); 
+    await ctx.reply('❌ Xatolik yuz berdi.'); 
+  }
 });
 
 // ============================================
 // PHOTO HANDLER
 // ============================================
 bot.on('message:photo', async (ctx) => {
+  const from = ctx.from;
+  const photo = ctx.message?.photo;
+  
+  if (!from || !photo || photo.length === 0) return;
+  
   await ctx.reply('📷 Skanerlanmoqda...');
+  
   try {
-    const file = await ctx.api.getFile(ctx.message.photo[ctx.message.photo.length - 1].file_id);
+    const file = await ctx.api.getFile(photo[photo.length - 1].file_id);
     const fileUrl = `https://api.telegram.org/file/bot${config.BOT_TOKEN}/${file.file_path}`;
     const receiptData = await extractReceiptData(fileUrl);
-    if (!receiptData) { await ctx.reply('❌ Chekni o\'qib bo\'lmadi.'); return; }
+    
+    if (!receiptData) { 
+      await ctx.reply('❌ Chekni o\'qib bo\'lmadi.'); 
+      return; 
+    }
+    
     const { id: categoryId, category } = detectCategory(receiptData.store);
-    await saveTransaction(ctx.from!.id, { description: receiptData.store, amount: -Math.abs(receiptData.amount), categoryId, source: 'receipt' });
-    const balance = await getBalance(ctx.from!.id);
+    await saveTransaction(from.id, { description: receiptData.store, amount: -Math.abs(receiptData.amount), categoryId, source: 'receipt' });
+    const balance = await getBalance(from.id);
     const keyboard = new InlineKeyboard().webApp('📊 Ilovani ochish', config.WEBAPP_URL);
+    
     await ctx.reply(
       `✅ *Chek qabul qilindi!*\n\n🏪 ${receiptData.store}\n💸 ${formatMoney(receiptData.amount)}\n${category.emoji} ${category.name}\n💰 Balans: ${formatMoney(balance)}`,
       { parse_mode: 'Markdown', reply_markup: keyboard }
     );
-  } catch (error) { console.error('Photo error:', error); await ctx.reply('❌ Xatolik yuz berdi.'); }
+  } catch (error) { 
+    console.error('Photo error:', error); 
+    await ctx.reply('❌ Xatolik yuz berdi.'); 
+  }
 });
 
 // ============================================
 // TEXT HANDLER
 // ============================================
 bot.on('message:text', async (ctx) => {
-  const text = ctx.message.text;
+  const from = ctx.from;
+  const text = ctx.message?.text;
+  
+  if (!from || !text) return;
   if (text.startsWith('/')) return;
+  
   const amount = parseAmount(text);
   const { id: categoryId, type, category } = detectCategory(text);
-  if (!amount) { await ctx.reply('❌ Summani aniqlab bo\'lmadi.\n\n💡 Masalan: "Kofe 15000"'); return; }
+  
+  if (!amount) { 
+    await ctx.reply('❌ Summani aniqlab bo\'lmadi.\n\n💡 Masalan: "Kofe 15000"'); 
+    return; 
+  }
+  
   const finalAmount = type === 'expense' ? -Math.abs(amount) : Math.abs(amount);
-  await saveTransaction(ctx.from!.id, { description: text, amount: finalAmount, categoryId, source: 'text' });
-  const balance = await getBalance(ctx.from!.id);
+  await saveTransaction(from.id, { description: text, amount: finalAmount, categoryId, source: 'text' });
+  const balance = await getBalance(from.id);
   const keyboard = new InlineKeyboard().webApp('📊 Ilovani ochish', config.WEBAPP_URL);
+  
   await ctx.reply(
     `✅ *Saqlandi!*\n\n${category.emoji} ${category.name}\n${type === 'expense' ? '💸' : '💰'} ${formatMoney(Math.abs(finalAmount))}\n💰 Balans: ${formatMoney(balance)}`,
     { parse_mode: 'Markdown', reply_markup: keyboard }
+  );
+});
+
+// ============================================
+// CALLBACK HANDLERS
+// ============================================
+bot.callbackQuery('view_balance', async (ctx) => {
+  const from = ctx.from;
+  if (!from) return;
+  
+  const balance = await getBalance(from.id);
+  const today = await getTodayStats(from.id);
+  
+  await ctx.answerCallbackQuery();
+  await ctx.reply(
+    `💰 *Balans: ${formatMoney(balance)}*\n\n📅 Bugun:\n↘️ Xarajat: ${formatMoney(today.expenses)}\n↗️ Daromad: ${formatMoney(today.income)}`,
+    { parse_mode: 'Markdown' }
   );
 });
 
