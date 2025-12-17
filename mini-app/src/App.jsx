@@ -219,35 +219,38 @@ const LANGS = [
 // ---------------------------
 const THEME = {
   bg: {
-    primary: "#0B1020",     // deep navy
-    secondary: "#0F172A",   // slate
-    card: "#111C33",        // card base
-    cardHover: "#152241",
-    input: "#0E1A33",
+    primary: "#FFFFFF",
+    secondary: "#F8FAFC",
+    card: "#FFFFFF",
+    cardHover: "#F1F5F9",
+    input: "#F1F5F9",
   },
   accent: {
-    primary: "#22C55E",     // green (main CTA)
-    secondary: "#38BDF8",   // cyan
-    tertiary: "#A78BFA",    // soft purple
+    primary: "#F97316",
+    secondary: "#FB923C",
+    tertiary: "#FDBA74",
     success: "#22C55E",
     warning: "#FBBF24",
     danger: "#EF4444",
-    info: "#38BDF8",
+    info: "#3B82F6",
     purple: "#8B5CF6",
   },
   text: {
-    primary: "#F8FAFC",
-    secondary: "#CBD5E1",
+    primary: "#1E293B",
+    secondary: "#64748B",
     muted: "#94A3B8",
   },
   gradient: {
-    primary: "linear-gradient(135deg, #22C55E 0%, #38BDF8 55%, #A78BFA 100%)",
+    primary: "linear-gradient(135deg, #F97316 0%, #FB923C 50%, #FBBF24 100%)",
     success: "linear-gradient(135deg, #22C55E 0%, #4ADE80 100%)",
     danger: "linear-gradient(135deg, #EF4444 0%, #F87171 100%)",
     purple: "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)",
-    blue: "linear-gradient(135deg, #38BDF8 0%, #60A5FA 100%)",
+    blue: "linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)",
   },
+  shadow: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)",
+  shadowLg: "0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06)",
 };
+;
 
 // ---------------------------
 // Helpers
