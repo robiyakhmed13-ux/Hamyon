@@ -241,7 +241,7 @@ const THEME = {
     muted: "#94A3B8",
   },
   gradient: {
-    primary: "linear-gradient(135deg, #22C55E 0%, #38BDF8 55%, #A78BFA 100%)",
+    primary: "linear-gradient(135deg, #22C55E 0%, #34D399 45%, #38BDF8 100%)",
     success: "linear-gradient(135deg, #22C55E 0%, #4ADE80 100%)",
     danger: "linear-gradient(135deg, #EF4444 0%, #F87171 100%)",
     purple: "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)",
@@ -1167,6 +1167,10 @@ export default function HamyonApp() {
     const type = txForm.type;
     const cats = type === "expense" ? allCats.expense : type === "income" ? allCats.income : allCats.debt;
 
+    // Avoid window.prompt() inside Telegram Mini App (it can trigger a "screen jump" / re-open)
+    const amountRef = useRef(null);
+    const shouldFocusAmountRef = useRef(false);
+
     const setType = (newType) => {
       const defaultCat =
         newType === "expense"
@@ -1178,22 +1182,27 @@ export default function HamyonApp() {
     };
 
     const handleCategoryPick = (c) => {
-      setTxForm((p) => ({ ...p, categoryId: c.id }));
+      setTxForm((p) => {
+        // If amount is empty, focus the amount input (no prompt to avoid UI jump)
+        if (!p.amount) shouldFocusAmountRef.current = true;
 
-      // If amount is empty -> ask amount immediately (fast flow)
-      if (!txForm.amount) {
-        const v = prompt(`${catLabel(c)} — ${t.amount} (UZS)`, "500000");
-        if (v === null) return;
-        const num = String(v).replace(/[^\d]/g, "");
-        if (!num) return;
-        setTxForm((p) => ({
+        return {
           ...p,
           categoryId: c.id,
-          amount: num,
+          // Helpful default, but never overwrite user's custom text
           description: p.description || catLabel(c),
-        }));
-      }
+        };
+      });
     };
+
+    useEffect(() => {
+      if (shouldFocusAmountRef.current) {
+        shouldFocusAmountRef.current = false;
+        // Next tick to ensure input exists
+        requestAnimationFrame(() => amountRef.current?.focus());
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [txForm.categoryId]);
 
     return (
       <ModalShell onClose={() => setShowAddTx(false)} mode="bottom">
@@ -1234,6 +1243,7 @@ export default function HamyonApp() {
               {t.amount} (UZS)
             </label>
             <input
+              ref={amountRef}
               value={txForm.amount}
               onChange={(e) => setTxForm((p) => ({ ...p, amount: e.target.value }))}
               type="number"
