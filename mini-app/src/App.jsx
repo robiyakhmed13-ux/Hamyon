@@ -1008,8 +1008,8 @@ export default function HamyonApp() {
         {[
           { icon: "➕", label: t.addExpense, action: () => openAddTx("expense"), grad: THEME.gradient.primary },
           { icon: "💰", label: t.addIncome, action: () => openAddTx("income"), grad: THEME.gradient.success },
-          { icon: "📁", label: t.categories, action: () => openAddCategory(true), grad: THEME.gradient.blue },
-          { icon: "🎯", label: t.limits, action: () => openAddLimit(true), grad: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)" },
+         { icon: "📁", label: t.categories, action: () => setShowCategories(true), grad: THEME.gradient.blue },
+         { icon: "🎯", label: t.limits, action: () => setShowLimitsScreen(true), grad: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)" },
         ].map((x, i) => (
           <motion.button
             key={i}
