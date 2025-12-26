@@ -27,7 +27,7 @@ const I18N = {
     income: "Daromad",
     home: "Bosh sahifa",
     stats: "Statistika",
-    add: "Qo‘shish",
+    add: "Qo'shish",
     transactions: "Tranzaksiyalar",
     categories: "Kategoriyalar",
     limits: "Limitlar",
@@ -35,7 +35,7 @@ const I18N = {
     debts: "Qarzlar",
     settings: "Sozlamalar",
     openBot: "Botni ochish",
-    addTransaction: "Tranzaksiya qo‘shish",
+    addTransaction: "Tranzaksiya qo'shish",
     editTransaction: "Tranzaksiyani tahrirlash",
     type: "Turi",
     expense: "Xarajat",
@@ -47,38 +47,40 @@ const I18N = {
     date: "Sana",
     save: "Saqlash",
     cancel: "Bekor",
-    delete: "O‘chirish",
+    delete: "O'chirish",
     edit: "Tahrirlash",
-    empty: "Hozircha hech narsa yo‘q",
+    empty: "Hozircha hech narsa yo'q",
     allTransactions: "Barcha tranzaksiyalar",
     filters: "Filtrlar",
     all: "Hammasi",
     today: "Bugun",
     week: "Bu hafta",
     month: "Bu oy",
-    addCategory: "Kategoriya qo‘shish",
+    addCategory: "Kategoriya qo'shish",
     editCategory: "Kategoriyani tahrirlash",
     language: "Til",
-    dataMode: "Ma’lumotlar rejimi",
+    dataMode: "Ma'lumotlar rejimi",
     localMode: "Local (offline)",
     remoteMode: "Supabase (online)",
     sync: "Yangilash / Sync",
     syncOk: "Synclandi",
-    syncFail: "Sync bo‘lmadi (offline ishlayapti)",
-    confirmDelete: "O‘chirishni tasdiqlaysizmi?",
-    quickAdd: "Tez qo‘shish",
-    addExpense: "Xarajat qo‘shish",
-    addIncome: "Daromad qo‘shish",
+    syncFail: "Sync bo'lmadi (offline ishlayapti)",
+    confirmDelete: "O'chirishni tasdiqlaysizmi?",
+    quickAdd: "Tez qo'shish",
+    addExpense: "Xarajat qo'shish",
+    addIncome: "Daromad qo'shish",
     analytics: "Analitika",
     weekSpending: "Haftalik xarajat",
     monthSpending: "Oylik xarajat",
     topCategories: "Top kategoriyalar",
-    noLimits: "Limitlar yo‘q",
-    noGoals: "Maqsadlar yo‘q",
-    noCategories: "Kategoriyalar yo‘q",
-    botHint: "Bot orqali ham qo‘shishingiz mumkin, lekin mini-app mustaqil ishlaydi.",
+    noLimits: "Limitlar yo'q",
+    noGoals: "Maqsadlar yo'q",
+    noCategories: "Kategoriyalar yo'q",
+    botHint: "Bot orqali ham qo'shishingiz mumkin, lekin mini-app mustaqil ishlaydi.",
     tgOpen: "Telegramda ochish",
-    resetLocal: "Local ma’lumotlarni tozalash",
+    resetLocal: "Local ma'lumotlarni tozalash",
+    deposit: "Qo'shish",
+    withdraw: "Olmoq"
   },
   ru: {
     appName: "Hamyon",
@@ -142,6 +144,8 @@ const I18N = {
     botHint: "Можно добавлять через бота, но мини-приложение работает автономно.",
     tgOpen: "Открыть в Telegram",
     resetLocal: "Сбросить local данные",
+    deposit: "Пополнить",
+    withdraw: "Снять"
   },
   en: {
     appName: "Hamyon",
@@ -205,48 +209,56 @@ const I18N = {
     botHint: "You can add via bot too, but the mini-app works independently.",
     tgOpen: "Open in Telegram",
     resetLocal: "Reset local data",
+    deposit: "Deposit",
+    withdraw: "Withdraw"
   },
 };
 
 const LANGS = [
-  { key: "uz", label: "O‘zbek", flag: "🇺🇿" },
+  { key: "uz", label: "O'zbek", flag: "🇺🇿" },
   { key: "ru", label: "Русский", flag: "🇷🇺" },
   { key: "en", label: "English", flag: "🇬🇧" },
 ];
 
 // ---------------------------
-// Theme
+// Modern White Theme
 // ---------------------------
 const THEME = {
   bg: {
-    primary: "#0B1020",     // deep navy
-    secondary: "#0F172A",   // slate
-    card: "#111C33",        // card base
-    cardHover: "#152241",
-    input: "#0E1A33",
+    primary: "#FFFFFF",
+    secondary: "#F8FAFC",
+    card: "#FFFFFF",
+    cardHover: "#F1F5F9",
+    input: "#F8FAFC",
   },
   accent: {
-    primary: "#22C55E",     // green (main CTA)
-    secondary: "#38BDF8",   // cyan
-    tertiary: "#A78BFA",    // soft purple
-    success: "#22C55E",
-    warning: "#FBBF24",
+    primary: "#6366F1",
+    secondary: "#8B5CF6",
+    tertiary: "#0EA5E9",
+    success: "#10B981",
+    warning: "#F59E0B",
     danger: "#EF4444",
-    info: "#38BDF8",
+    info: "#3B82F6",
     purple: "#8B5CF6",
   },
   text: {
-    primary: "#F8FAFC",
-    secondary: "#CBD5E1",
+    primary: "#1E293B",
+    secondary: "#475569",
     muted: "#94A3B8",
   },
   gradient: {
-    primary: "linear-gradient(135deg, #22C55E 0%, #38BDF8 55%, #A78BFA 100%)",
-    success: "linear-gradient(135deg, #22C55E 0%, #4ADE80 100%)",
+    primary: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #0EA5E9 100%)",
+    success: "linear-gradient(135deg, #10B981 0%, #34D399 100%)",
     danger: "linear-gradient(135deg, #EF4444 0%, #F87171 100%)",
     purple: "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)",
-    blue: "linear-gradient(135deg, #38BDF8 0%, #60A5FA 100%)",
+    blue: "linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%)",
+    premium: "linear-gradient(135deg, #FF6B6B 0%, #FFA726 25%, #4ECDC4 50%, #45B7D1 75%, #96CEB4 100%)",
   },
+  shadow: {
+    card: "0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 10px rgba(0, 0, 0, 0.03)",
+    button: "0 4px 20px rgba(99, 102, 241, 0.15)",
+    modal: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+  }
 };
 
 // ---------------------------
@@ -294,9 +306,15 @@ const GlassCard = ({ children, className = "", onClick, style = {}, gradient }) 
   <motion.div
     whileHover={onClick ? { scale: 1.01, y: -2 } : {}}
     whileTap={onClick ? { scale: 0.99 } : {}}
+    initial={false}
     onClick={onClick}
-    className={`relative overflow-hidden rounded-2xl border border-white/5 ${onClick ? "cursor-pointer" : ""} ${className}`}
-    style={{ background: gradient || THEME.bg.card, ...style }}
+    className={`relative overflow-hidden rounded-2xl ${onClick ? "cursor-pointer" : ""} ${className}`}
+    style={{ 
+      background: gradient || THEME.bg.card,
+      boxShadow: THEME.shadow.card,
+      border: "1px solid rgba(0, 0, 0, 0.05)",
+      ...style 
+    }}
   >
     {children}
   </motion.div>
@@ -321,7 +339,10 @@ const ModalShell = ({ children, onClose, mode = "bottom" }) => {
           exit={{ scale: 0.96, opacity: 0 }}
           transition={{ type: "spring", damping: 24 }}
           className="w-full max-w-md rounded-3xl p-5"
-          style={{ background: THEME.bg.secondary }}
+          style={{ 
+            background: THEME.bg.secondary,
+            boxShadow: THEME.shadow.modal 
+          }}
           onClick={(e) => e.stopPropagation()}
         >
           {children}
@@ -345,10 +366,13 @@ const ModalShell = ({ children, onClose, mode = "bottom" }) => {
         exit={{ y: "100%" }}
         transition={{ type: "spring", damping: 28 }}
         className="w-full max-h-[92vh] overflow-y-auto rounded-t-3xl p-6"
-        style={{ background: THEME.bg.secondary }}
+        style={{ 
+          background: THEME.bg.secondary,
+          boxShadow: THEME.shadow.modal 
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-12 h-1 rounded-full mx-auto mb-5" style={{ background: "rgba(255,255,255,0.2)" }} />
+        <div className="w-12 h-1 rounded-full mx-auto mb-5" style={{ background: "rgba(0,0,0,0.2)" }} />
         {children}
       </motion.div>
     </motion.div>
@@ -430,7 +454,7 @@ export default function HamyonApp() {
 
   // Data mode
   const [remoteOk, setRemoteOk] = useState(false);
-  const [dataMode, setDataMode] = useState(() => safeJSON.get("hamyon_dataMode", "auto")); // auto | local | remote
+  const [dataMode, setDataMode] = useState(() => safeJSON.get("hamyon_dataMode", "auto"));
 
   // Core data
   const [balance, setBalance] = useState(() => safeJSON.get("hamyon_balance", 0));
@@ -456,7 +480,7 @@ export default function HamyonApp() {
 
   // Forms
   const [txForm, setTxForm] = useState({
-    type: "expense", // expense|income|debt
+    type: "expense",
     amount: "",
     description: "",
     categoryId: "food",
@@ -465,6 +489,40 @@ export default function HamyonApp() {
 
   const [limitForm, setLimitForm] = useState({ id: null, categoryId: "food", amount: "" });
   const [goalForm, setGoalForm] = useState({ id: null, name: "", target: "", current: "", emoji: "🎯" });
+
+  // ---------------------------
+  // Telegram Keyboard Fix
+  // ---------------------------
+  useEffect(() => {
+    // Prevent jumping on keyboard open
+    if (window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp;
+      tg.ready();
+      tg.expand();
+      tg.setHeaderColor("#FFFFFF");
+      tg.setBackgroundColor("#FFFFFF");
+      
+      // Disable gestures that cause reflows
+      if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
+      if (tg.disableHorizontalSwipes) tg.disableHorizontalSwipes();
+    }
+    
+    // Add CSS fixes
+    const style = document.createElement('style');
+    style.textContent = `
+      input, textarea {
+        font-size: 16px !important;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   // ---------------------------
   // Toast
@@ -495,8 +553,8 @@ export default function HamyonApp() {
       const tg = window.Telegram.WebApp;
       tg.ready();
       tg.expand();
-      tg.setHeaderColor(THEME.bg.primary);
-      tg.setBackgroundColor(THEME.bg.primary);
+      tg.setHeaderColor("#FFFFFF");
+      tg.setBackgroundColor("#FFFFFF");
       u = tg.initDataUnsafe?.user || null;
     }
     if (!u) {
@@ -576,7 +634,6 @@ export default function HamyonApp() {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5)
       .map(([categoryId, spent]) => ({ categoryId, spent, cat: getCat(categoryId) }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions, month, categories, lang]);
 
   const monthSpentByCategory = (categoryId) => {
@@ -812,7 +869,7 @@ export default function HamyonApp() {
   };
 
   const removeTx = async (tx) => {
-    if (!confirm(t.confirmDelete)) return;
+    // Direct delete (no confirm dialog)
     setTransactions((prev) => prev.filter((x) => x.id !== tx.id));
     setBalance((b) => b - tx.amount);
     showToast("✓", true);
@@ -846,7 +903,6 @@ export default function HamyonApp() {
   };
 
   const deleteLimit = (id) => {
-    if (!confirm(t.confirmDelete)) return;
     setLimits((prev) => prev.filter((x) => x.id !== id));
     showToast("✓", true);
   };
@@ -874,7 +930,6 @@ export default function HamyonApp() {
   };
 
   const deleteGoal = (id) => {
-    if (!confirm(t.confirmDelete)) return;
     setGoals((prev) => prev.filter((g) => g.id !== id));
     showToast("✓", true);
   };
@@ -890,7 +945,7 @@ export default function HamyonApp() {
   // Open bot
   // ---------------------------
   const openBot = () => {
-    const BOT_USERNAME = "hamyonmoneybot"; // change if needed
+    const BOT_USERNAME = "hamyonmoneybot";
     if (window.Telegram?.WebApp?.openTelegramLink) {
       window.Telegram.WebApp.openTelegramLink(`https://t.me/${BOT_USERNAME}`);
     } else {
@@ -899,31 +954,48 @@ export default function HamyonApp() {
   };
 
   // ---------------------------
-  // UI
+  // UI Components
   // ---------------------------
   const Header = () => (
     <header className="px-5 pt-6 pb-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold" style={{ background: THEME.gradient.primary }}>
+          <div 
+            className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold"
+            style={{ 
+              background: THEME.gradient.primary,
+              boxShadow: THEME.shadow.button
+            }}
+          >
             {(tgUser?.first_name || "U").charAt(0)}
           </div>
           <div>
             <h1 className="text-xl font-bold" style={{ color: THEME.text.primary }}>
               {t.hello}, {tgUser?.first_name || "User"}!
             </h1>
-            <p className="text-sm" style={{ color: THEME.text.muted }}>
-              {t.assistant}
+            <p className="text-sm flex items-center gap-1" style={{ color: THEME.accent.primary }}>
+              <span>⭐</span> {t.assistant}
             </p>
           </div>
         </div>
         <button
-          className="text-2xl font-black tracking-tight"
-          style={{ background: THEME.gradient.primary, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          className="text-2xl font-black tracking-tight relative"
+          style={{ 
+            background: THEME.gradient.premium,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
           onClick={() => setShowSettingsScreen(true)}
           title={t.settings}
         >
           {t.appName}
+          <span className="absolute -top-1 -right-1 text-[10px] px-1.5 py-0.5 rounded-full" 
+            style={{ 
+              background: THEME.gradient.primary,
+              color: "white"
+            }}>
+            PRO
+          </span>
         </button>
       </div>
     </header>
@@ -931,73 +1003,74 @@ export default function HamyonApp() {
 
   const BalanceCard = () => (
     <div className="px-5 mb-4">
-      <GlassCard className="p-5">
+      <GlassCard className="p-6">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-sm mb-1" style={{ color: THEME.text.muted }}>
+            <p className="text-sm mb-2 flex items-center gap-2" style={{ color: THEME.text.muted }}>
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: THEME.gradient.primary }} />
               {t.balance}
             </p>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: THEME.accent.success }} />
-              <h2 className="text-3xl font-bold" style={{ color: THEME.text.primary }}>
-                {formatUZS(balance)} UZS
+            <div className="flex items-baseline gap-2">
+              <h2 className="text-4xl font-bold" style={{ color: THEME.text.primary }}>
+                {formatUZS(balance)}
               </h2>
+              <span className="text-sm font-semibold px-2 py-1 rounded-lg" 
+                style={{ 
+                  background: "rgba(99, 102, 241, 0.1)",
+                  color: THEME.accent.primary
+                }}>
+                UZS
+              </span>
             </div>
           </div>
 
           <button
             onClick={syncFromRemote}
-            className="px-4 py-3 rounded-2xl text-sm font-semibold"
+            className="px-4 py-3 rounded-2xl text-sm font-semibold flex items-center gap-2"
             style={{
-              background: useRemote ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.06)",
+              background: useRemote ? "rgba(16, 185, 129, 0.1)" : "rgba(0, 0, 0, 0.03)",
               color: useRemote ? THEME.accent.success : THEME.text.secondary,
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(0, 0, 0, 0.05)",
+              boxShadow: useRemote ? THEME.shadow.button : "none",
             }}
           >
-            🔄 {t.sync}
+            <span className="text-lg">🔄</span>
+            <span>{t.sync}</span>
           </button>
         </div>
 
-        <div className="mt-4 p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.03)" }}>
-          <p className="text-sm mb-3 text-center" style={{ color: THEME.text.muted }}>
-            {t.todaySummary}
-          </p>
+        <div className="mt-6 p-5 rounded-2xl" style={{ 
+          background: "linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)",
+          border: "1px solid rgba(99, 102, 241, 0.1)"
+        }}>
           <div className="flex justify-around">
             <div className="text-center">
-              <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
-                {todayExp ? `${formatUZS(todayExp)} UZS` : "0"}
-              </p>
-              <div className="flex items-center gap-1 justify-center">
-                <span style={{ color: THEME.accent.danger }}>↘</span>
-                <span className="text-xs" style={{ color: THEME.text.muted }}>
-                  {t.expenses}
-                </span>
+              <div className="w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center" 
+                style={{ background: "rgba(239, 68, 68, 0.1)" }}>
+                <span className="text-xl" style={{ color: THEME.accent.danger }}>↘</span>
               </div>
+              <p className="text-2xl font-bold mb-1" style={{ color: THEME.accent.danger }}>
+                {todayExp ? `-${formatUZS(todayExp)}` : "0"}
+              </p>
+              <p className="text-xs font-medium" style={{ color: THEME.text.muted }}>
+                {t.expenses}
+              </p>
             </div>
 
-            <div className="w-px" style={{ background: "rgba(255,255,255,0.1)" }} />
-
             <div className="text-center">
-              <p className="text-xl font-bold" style={{ color: THEME.accent.success }}>
-                {todayInc ? `${formatUZS(todayInc)} UZS` : "0"}
-              </p>
-              <div className="flex items-center gap-1 justify-center">
-                <span style={{ color: THEME.accent.success }}>↗</span>
-                <span className="text-xs" style={{ color: THEME.text.muted }}>
-                  {t.income}
-                </span>
+              <div className="w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center" 
+                style={{ background: "rgba(16, 185, 129, 0.1)" }}>
+                <span className="text-xl" style={{ color: THEME.accent.success }}>↗</span>
               </div>
+              <p className="text-2xl font-bold mb-1" style={{ color: THEME.accent.success }}>
+                {todayInc ? `+${formatUZS(todayInc)}` : "0"}
+              </p>
+              <p className="text-xs font-medium" style={{ color: THEME.text.muted }}>
+                {t.income}
+              </p>
             </div>
           </div>
         </div>
-
-        <p className="text-xs mt-3" style={{ color: THEME.text.muted }}>
-          {t.dataMode}:{" "}
-          <span style={{ color: useRemote ? THEME.accent.success : THEME.text.secondary }}>
-            {useRemote ? t.remoteMode : t.localMode}
-          </span>
-          {sb.enabled() ? "" : " (no env)"}
-        </p>
       </GlassCard>
     </div>
   );
@@ -1015,9 +1088,14 @@ export default function HamyonApp() {
             key={i}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            initial={false}
             onClick={x.action}
             className="p-4 rounded-2xl flex flex-col items-center gap-2"
-            style={{ background: THEME.bg.card, border: "1px solid rgba(255,255,255,0.05)" }}
+            style={{ 
+              background: THEME.bg.card, 
+              border: "1px solid rgba(0, 0, 0, 0.05)",
+              boxShadow: THEME.shadow.card
+            }}
           >
             <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: x.grad }}>
               {x.icon}
@@ -1036,9 +1114,14 @@ export default function HamyonApp() {
       <motion.button
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
+        initial={false}
         onClick={() => setShowAnalyticsScreen(true)}
         className="w-full p-5 rounded-2xl flex items-center gap-4"
-        style={{ background: THEME.bg.card, border: "1px solid rgba(255,255,255,0.05)" }}
+        style={{ 
+          background: THEME.bg.card, 
+          border: "1px solid rgba(0, 0, 0, 0.05)",
+          boxShadow: THEME.shadow.card
+        }}
       >
         <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ background: THEME.gradient.purple }}>
           <span className="text-2xl">📈</span>
@@ -1076,7 +1159,11 @@ export default function HamyonApp() {
               <button
                 onClick={() => openAddTx("expense")}
                 className="px-4 py-3 rounded-2xl font-semibold"
-                style={{ background: THEME.gradient.primary, color: "#000" }}
+                style={{ 
+                  background: THEME.gradient.primary, 
+                  color: "white",
+                  boxShadow: THEME.shadow.button
+                }}
               >
                 {t.addTransaction}
               </button>
@@ -1088,7 +1175,10 @@ export default function HamyonApp() {
             return (
               <GlassCard key={tx.id} className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: `${c.color}20` }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ 
+                    background: `${c.color}20`,
+                    boxShadow: `0 4px 12px ${c.color}20`
+                  }}>
                     {c.emoji}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -1106,10 +1196,22 @@ export default function HamyonApp() {
                       {formatUZS(tx.amount)} UZS
                     </p>
                     <div className="flex gap-2 justify-end mt-1">
-                      <button onClick={() => openEditTx(tx)} className="text-xs" style={{ color: THEME.accent.info }}>
+                      <button onClick={() => openEditTx(tx)} className="text-xs font-medium"
+                        style={{ 
+                          color: THEME.accent.info,
+                          background: "rgba(59, 130, 246, 0.1)",
+                          padding: "2px 8px",
+                          borderRadius: "6px"
+                        }}>
                         {t.edit}
                       </button>
-                      <button onClick={() => removeTx(tx)} className="text-xs" style={{ color: THEME.accent.danger }}>
+                      <button onClick={() => removeTx(tx)} className="text-xs font-medium"
+                        style={{ 
+                          color: THEME.accent.danger,
+                          background: "rgba(239, 68, 68, 0.1)",
+                          padding: "2px 8px",
+                          borderRadius: "6px"
+                        }}>
                         {t.delete}
                       </button>
                     </div>
@@ -1136,9 +1238,9 @@ export default function HamyonApp() {
               onClick={openBot}
               className="px-4 py-3 rounded-2xl font-semibold"
               style={{
-                background: "rgba(249,115,22,0.15)",
+                background: "rgba(249,115,22,0.1)",
                 color: THEME.accent.primary,
-                border: "1px solid rgba(255,255,255,0.05)",
+                border: "1px solid rgba(0, 0, 0, 0.05)",
               }}
             >
               {t.openBot}
@@ -1160,7 +1262,7 @@ export default function HamyonApp() {
   );
 
   // ---------------------------
-  // Add/Edit Transaction Modal helpers
+  // Add/Edit Transaction Modal
   // ---------------------------
   const txModalType = txForm.type;
   const txModalCats = txModalType === "expense" ? allCats.expense : txModalType === "income" ? allCats.income : allCats.debt;
@@ -1178,22 +1280,15 @@ export default function HamyonApp() {
   const handleCategoryPick = (c) => {
     setTxForm((p) => ({ ...p, categoryId: c.id }));
 
-    // If amount is empty -> ask amount immediately (fast flow)
     if (!txForm.amount) {
-      const v = prompt(`${catLabel(c)} — ${t.amount} (UZS)`, "500000");
-      if (v === null) return;
-      const num = String(v).replace(/[^\d]/g, "");
-      if (!num) return;
       setTxForm((p) => ({
         ...p,
         categoryId: c.id,
-        amount: num,
         description: p.description || catLabel(c),
       }));
     }
   };
 
-  // Add/Edit Transaction Modal JSX (NOT a component - just JSX)
   const addTxModalContent = (
     <ModalShell key="add-tx-modal" onClose={() => setShowAddTx(false)} mode="bottom">
       <div className="flex items-center justify-between mb-2">
@@ -1216,9 +1311,9 @@ export default function HamyonApp() {
             onClick={() => setTxType(x.k)}
             className="flex-1 py-3 rounded-xl flex items-center justify-center gap-2"
             style={{
-              background: txModalType === x.k ? "rgba(249,115,22,0.18)" : THEME.bg.card,
+              background: txModalType === x.k ? "rgba(99, 102, 241, 0.18)" : THEME.bg.card,
               color: txModalType === x.k ? THEME.accent.primary : THEME.text.secondary,
-              border: "1px solid rgba(255,255,255,0.05)",
+              border: "1px solid rgba(0, 0, 0, 0.05)",
             }}
           >
             <span>{x.icon}</span>
@@ -1234,10 +1329,20 @@ export default function HamyonApp() {
           </label>
           <input
             value={txForm.amount}
-            onChange={(e) => setTxForm((p) => ({ ...p, amount: e.target.value }))}
-            type="number"
-            className="w-full p-4 rounded-2xl"
-            style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
+            onChange={(e) => {
+              const val = e.target.value.replace(/[^\d]/g, '');
+              setTxForm(p => ({ ...p, amount: val }));
+            }}
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            className="w-full p-4 rounded-2xl text-lg font-semibold"
+            style={{ 
+              background: THEME.bg.input,
+              color: THEME.text.primary,
+              border: "2px solid rgba(99, 102, 241, 0.1)",
+              boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.03)"
+            }}
             placeholder="15000"
           />
         </div>
@@ -1251,7 +1356,12 @@ export default function HamyonApp() {
             onChange={(e) => setTxForm((p) => ({ ...p, description: e.target.value }))}
             type="text"
             className="w-full p-4 rounded-2xl"
-            style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ 
+              background: THEME.bg.input,
+              color: THEME.text.primary,
+              border: "2px solid rgba(99, 102, 241, 0.1)",
+              boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.03)"
+            }}
             placeholder={catLabel(getCat(txForm.categoryId))}
           />
         </div>
@@ -1265,7 +1375,12 @@ export default function HamyonApp() {
             onChange={(e) => setTxForm((p) => ({ ...p, date: e.target.value }))}
             type="date"
             className="w-full p-4 rounded-2xl"
-            style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ 
+              background: THEME.bg.input,
+              color: THEME.text.primary,
+              border: "2px solid rgba(99, 102, 241, 0.1)",
+              boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.03)"
+            }}
           />
         </div>
 
@@ -1282,6 +1397,7 @@ export default function HamyonApp() {
                 style={{
                   background: txForm.categoryId === c.id ? `${c.color}30` : THEME.bg.card,
                   border: txForm.categoryId === c.id ? `2px solid ${c.color}` : "2px solid transparent",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)"
                 }}
               >
                 <span className="text-xl">{c.emoji}</span>
@@ -1297,11 +1413,19 @@ export default function HamyonApp() {
           <button
             onClick={() => setShowAddTx(false)}
             className="flex-1 py-4 rounded-2xl font-semibold"
-            style={{ background: THEME.bg.card, color: THEME.text.secondary, border: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ 
+              background: THEME.bg.card, 
+              color: THEME.text.secondary, 
+              border: "1px solid rgba(0, 0, 0, 0.06)" 
+            }}
           >
             {t.cancel}
           </button>
-          <button onClick={saveTx} className="flex-1 py-4 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
+          <button onClick={saveTx} className="flex-1 py-4 rounded-2xl font-semibold" style={{ 
+            background: THEME.gradient.primary, 
+            color: "white",
+            boxShadow: THEME.shadow.button
+          }}>
             {t.save}
           </button>
         </div>
@@ -1310,988 +1434,411 @@ export default function HamyonApp() {
   );
 
   // ---------------------------
-// Categories Screen (FIXED: NO prompt/confirm, Telegram-safe)
-// ---------------------------
-const CategoriesScreen = () => {
-  const [activeType, setActiveType] = useState("expense");
-  const list = allCats[activeType] || [];
+  // Categories Screen
+  // ---------------------------
+  const CategoriesScreen = () => {
+    const [activeType, setActiveType] = useState("expense");
+    const list = allCats[activeType] || [];
 
-  const [editInlineId, setEditInlineId] = useState(null);
-  const [editName, setEditName] = useState("");
+    const [editInlineId, setEditInlineId] = useState(null);
+    const [editName, setEditName] = useState("");
 
-  // Add Category modal state (replaces prompt())
-  const [showAddCat, setShowAddCat] = useState(false);
-  const [newCatName, setNewCatName] = useState("");
-  const [newCatEmoji, setNewCatEmoji] = useState("📦");
-  const [newCatColor, setNewCatColor] = useState("#90A4AE");
+    const [showAddCat, setShowAddCat] = useState(false);
+    const [newCatName, setNewCatName] = useState("");
+    const [newCatEmoji, setNewCatEmoji] = useState("📦");
+    const [newCatColor, setNewCatColor] = useState("#90A4AE");
 
-  // Delete confirm modal state (replaces confirm())
-  const [pendingDeleteId, setPendingDeleteId] = useState(null);
+    const [pendingDeleteId, setPendingDeleteId] = useState(null);
 
-  const startInlineEdit = (cat) => {
-    setEditInlineId(cat.id);
-    setEditName(catLabel(cat));
-  };
-
-  const saveInlineEdit = (cat) => {
-    const name = (editName || "").trim();
-    if (!name) return;
-
-    setCategories((prev) => {
-      const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
-      const idx = copy[activeType].findIndex((c) => c.id === cat.id);
-      if (idx >= 0) {
-        const old = copy[activeType][idx];
-        const patch = lang === "uz" ? { uz: name } : lang === "ru" ? { ru: name } : { en: name };
-        copy[activeType][idx] = { ...old, ...patch, custom: true };
-      }
-      return copy;
-    });
-
-    setEditInlineId(null);
-    setEditName("");
-    showToast("✓", true);
-  };
-
-  const cancelInlineEdit = () => {
-    setEditInlineId(null);
-    setEditName("");
-  };
-
-  const openAddCategory = () => {
-    setNewCatName("");
-    setNewCatEmoji("📦");
-    setNewCatColor("#90A4AE");
-    setShowAddCat(true);
-  };
-
-  const saveNewCategory = () => {
-    const nm = String(newCatName || "").trim();
-    if (!nm) return;
-
-    const newId = uid().slice(0, 8);
-    const safeEmoji = String(newCatEmoji || "📦").trim() || "📦";
-    const safeColor = String(newCatColor || "#90A4AE").trim() || "#90A4AE";
-
-    const newCat = {
-      id: newId,
-      uz: nm,
-      ru: nm,
-      en: nm,
-      emoji: safeEmoji,
-      color: safeColor,
-      custom: true,
+    const startInlineEdit = (cat) => {
+      setEditInlineId(cat.id);
+      setEditName(catLabel(cat));
     };
 
-    setCategories((prev) => {
-      const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
-      copy[activeType].unshift(newCat);
-      return copy;
-    });
+    const saveInlineEdit = (cat) => {
+      const name = (editName || "").trim();
+      if (!name) return;
 
-    setShowAddCat(false);
-    showToast("✓", true);
-  };
+      setCategories((prev) => {
+        const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
+        const idx = copy[activeType].findIndex((c) => c.id === cat.id);
+        if (idx >= 0) {
+          const old = copy[activeType][idx];
+          const patch = lang === "uz" ? { uz: name } : lang === "ru" ? { ru: name } : { en: name };
+          copy[activeType][idx] = { ...old, ...patch, custom: true };
+        }
+        return copy;
+      });
 
-  const requestDeleteCategory = (catId) => {
-    // Telegram-safe: open our modal, not confirm()
-    setPendingDeleteId(catId);
-  };
+      setEditInlineId(null);
+      setEditName("");
+      showToast("✓", true);
+    };
 
-  const confirmDeleteCategory = () => {
-    const catId = pendingDeleteId;
-    if (!catId) return;
+    const cancelInlineEdit = () => {
+      setEditInlineId(null);
+      setEditName("");
+    };
 
-    // prevent deleting if used
-    const usedTx = transactions.some((x) => x.categoryId === catId);
-    const usedLim = limits.some((x) => x.categoryId === catId);
-    if (usedTx || usedLim) {
+    const openAddCategory = () => {
+      setNewCatName("");
+      setNewCatEmoji("📦");
+      setNewCatColor("#90A4AE");
+      setShowAddCat(true);
+    };
+
+    const saveNewCategory = () => {
+      const nm = String(newCatName || "").trim();
+      if (!nm) return;
+
+      const newId = uid().slice(0, 8);
+      const safeEmoji = String(newCatEmoji || "📦").trim() || "📦";
+      const safeColor = String(newCatColor || "#90A4AE").trim() || "#90A4AE";
+
+      const newCat = {
+        id: newId,
+        uz: nm,
+        ru: nm,
+        en: nm,
+        emoji: safeEmoji,
+        color: safeColor,
+        custom: true,
+      };
+
+      setCategories((prev) => {
+        const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
+        copy[activeType].unshift(newCat);
+        return copy;
+      });
+
+      setShowAddCat(false);
+      showToast("✓", true);
+    };
+
+    const requestDeleteCategory = (catId) => {
+      setPendingDeleteId(catId);
+    };
+
+    const confirmDeleteCategory = () => {
+      const catId = pendingDeleteId;
+      if (!catId) return;
+
+      const usedTx = transactions.some((x) => x.categoryId === catId);
+      const usedLim = limits.some((x) => x.categoryId === catId);
+      if (usedTx || usedLim) {
+        setPendingDeleteId(null);
+        showToast("⚠️ Foydalanilgan", false);
+        return;
+      }
+
+      setCategories((prev) => {
+        const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
+        copy[activeType] = copy[activeType].filter((c) => c.id !== catId);
+        return copy;
+      });
+
       setPendingDeleteId(null);
-      showToast("⚠️ Used", false);
-      return;
-    }
+      showToast("✓", true);
+    };
 
-    setCategories((prev) => {
-      const copy = { ...prev, [activeType]: [...(prev[activeType] || [])] };
-      copy[activeType] = copy[activeType].filter((c) => c.id !== catId);
-      return copy;
-    });
+    const cancelDeleteCategory = () => setPendingDeleteId(null);
 
-    setPendingDeleteId(null);
-    showToast("✓", true);
-  };
-
-  const cancelDeleteCategory = () => setPendingDeleteId(null);
-
-  return (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
-      <div className="p-5 pb-28">
-        <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowCategories(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
-          >
-            ←
-          </motion.button>
-
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-              {t.categories}
-            </h1>
-            <p className="text-sm" style={{ color: THEME.text.muted }}>
-              {list.length}
-            </p>
-          </div>
-
-          <button
-            onClick={openAddCategory}
-            className="px-4 py-3 rounded-2xl font-semibold"
-            style={{ background: THEME.gradient.primary, color: "#000" }}
-          >
-            + {t.addCategory}
-          </button>
-        </div>
-
-        <div className="flex gap-2 mb-4">
-          {[
-            { key: "expense", label: t.expense, icon: "↘", count: allCats.expense.length },
-            { key: "income", label: t.incomeType, icon: "↗", count: allCats.income.length },
-            { key: "debt", label: t.debtType, icon: "💳", count: allCats.debt.length },
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => {
-                setActiveType(tab.key);
-                cancelInlineEdit();
-              }}
-              className="flex-1 py-3 rounded-xl flex items-center justify-center gap-2 transition-all"
-              style={{
-                background: activeType === tab.key ? THEME.bg.card : "transparent",
-                color: activeType === tab.key ? THEME.text.primary : THEME.text.muted,
-                border: `1px solid ${activeType === tab.key ? "rgba(255,255,255,0.1)" : "transparent"}`,
+    return (
+      <motion.div
+        initial={false}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        className="fixed inset-0 z-50 overflow-y-auto"
+        style={{ background: THEME.bg.primary }}
+      >
+        <div className="p-5 pb-28">
+          <div className="flex items-center gap-4 mb-6">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              initial={false}
+              onClick={() => setShowCategories(false)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ 
+                background: THEME.bg.card,
+                boxShadow: THEME.shadow.card
               }}
             >
-              <span>{tab.icon}</span>
-              <span className="text-sm font-medium">{tab.label}</span>
-              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(255,255,255,0.1)" }}>
-                {tab.count}
-              </span>
-            </button>
-          ))}
-        </div>
+              ←
+            </motion.button>
 
-        <div className="space-y-2">
-          {list.length === 0 ? (
-            <GlassCard className="p-6 text-center">
-              <span className="text-5xl block mb-2">📁</span>
-              <p style={{ color: THEME.text.muted }}>{t.noCategories}</p>
-            </GlassCard>
-          ) : (
-            list.map((cat) => (
-              <GlassCard key={cat.id} className="p-4">
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-                    style={{ background: `${cat.color}30` }}
-                  >
-                    {cat.emoji}
-                  </div>
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
+                {t.categories}
+              </h1>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {list.length}
+              </p>
+            </div>
 
-                  <div className="flex-1 min-w-0">
-                    {editInlineId === cat.id ? (
-                      <div className="flex items-center gap-2">
-                        <input
-                          value={editName}
-                          onChange={(e) => setEditName(e.target.value)}
-                          className="flex-1 p-3 rounded-xl"
-                          style={{
-                            background: THEME.bg.input,
-                            color: THEME.text.primary,
-                            border: "1px solid rgba(255,255,255,0.06)",
-                          }}
-                          autoFocus
-                        />
-                        <button
-                          onClick={() => saveInlineEdit(cat)}
-                          className="w-10 h-10 rounded-xl flex items-center justify-center"
-                          style={{ background: "rgba(34,197,94,0.18)" }}
-                          title="Save"
-                        >
-                          💾
-                        </button>
-                        <button
-                          onClick={cancelInlineEdit}
-                          className="w-10 h-10 rounded-xl flex items-center justify-center"
-                          style={{ background: "rgba(239,68,68,0.18)" }}
-                          title="Cancel"
-                        >
-                          ✖
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
-                          {catLabel(cat)}
-                        </p>
-                        <p className="text-xs" style={{ color: THEME.text.muted }}>
-                          {activeType === "expense" ? `${formatUZS(monthSpentByCategory(cat.id))} UZS (month)` : ""}
-                        </p>
-                      </>
-                    )}
-                  </div>
-
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => startInlineEdit(cat)}
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{ background: "rgba(56, 189, 248, 0.18)" }}
-                      title={t.edit}
-                    >
-                      <span style={{ color: THEME.accent.info }}>✏️</span>
-                    </button>
-
-                    <button
-                      onClick={() => requestDeleteCategory(cat.id)}
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{ background: "rgba(239, 68, 68, 0.18)" }}
-                      title={t.delete}
-                    >
-                      <span style={{ color: THEME.accent.danger }}>🗑️</span>
-                    </button>
-                  </div>
-                </div>
-              </GlassCard>
-            ))
-          )}
-        </div>
-      </div>
-
-      {/* Add Category Modal */}
-      {showAddCat && (
-        <div
-          className="fixed inset-0 z-[60] flex items-end justify-center p-4"
-          style={{ background: "rgba(0,0,0,0.55)" }}
-        >
-          <div className="w-full max-w-md rounded-3xl p-4" style={{ background: THEME.bg.card }}>
-            <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
-              {t.addCategory}
-            </h3>
-
-            <input
-              value={newCatName}
-              onChange={(e) => setNewCatName(e.target.value)}
-              placeholder={t.description}
-              className="w-full p-3 rounded-xl mb-2"
-              style={{
-                background: THEME.bg.input,
-                color: THEME.text.primary,
-                border: "1px solid rgba(255,255,255,0.06)",
+            <button
+              onClick={openAddCategory}
+              className="px-4 py-3 rounded-2xl font-semibold"
+              style={{ 
+                background: THEME.gradient.primary, 
+                color: "white",
+                boxShadow: THEME.shadow.button
               }}
-              autoFocus
-            />
-
-            <div className="flex gap-2">
-              <input
-                value={newCatEmoji}
-                onChange={(e) => setNewCatEmoji(e.target.value)}
-                className="w-24 p-3 rounded-xl"
-                style={{
-                  background: THEME.bg.input,
-                  color: THEME.text.primary,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-                placeholder="📦"
-              />
-              <input
-                value={newCatColor}
-                onChange={(e) => setNewCatColor(e.target.value)}
-                className="flex-1 p-3 rounded-xl"
-                style={{
-                  background: THEME.bg.input,
-                  color: THEME.text.primary,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-                placeholder="#90A4AE"
-              />
-            </div>
-
-            <div className="flex gap-2 mt-3">
-              <button
-                onClick={() => setShowAddCat(false)}
-                className="flex-1 py-3 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.08)", color: THEME.text.primary }}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={saveNewCategory}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: THEME.gradient.primary, color: "#000" }}
-              >
-                {t.save}
-              </button>
-            </div>
+            >
+              + {t.addCategory}
+            </button>
           </div>
-        </div>
-      )}
 
-      {/* Delete Confirm Modal */}
-      {pendingDeleteId && (
-        <div
-          className="fixed inset-0 z-[60] flex items-end justify-center p-4"
-          style={{ background: "rgba(0,0,0,0.55)" }}
-        >
-          <div className="w-full max-w-md rounded-3xl p-4" style={{ background: THEME.bg.card }}>
-            <h3 className="text-lg font-bold mb-2" style={{ color: THEME.text.primary }}>
-              {t.confirmDelete}
-            </h3>
-            <p className="text-sm mb-3" style={{ color: THEME.text.muted }}>
-              {t.delete}?
-            </p>
-
-            <div className="flex gap-2">
+          <div className="flex gap-2 mb-4">
+            {[
+              { key: "expense", label: t.expense, icon: "↘", count: allCats.expense.length },
+              { key: "income", label: t.incomeType, icon: "↗", count: allCats.income.length },
+              { key: "debt", label: t.debtType, icon: "💳", count: allCats.debt.length },
+            ].map((tab) => (
               <button
-                onClick={cancelDeleteCategory}
-                className="flex-1 py-3 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.08)", color: THEME.text.primary }}
+                key={tab.key}
+                onClick={() => {
+                  setActiveType(tab.key);
+                  cancelInlineEdit();
+                }}
+                className="flex-1 py-3 rounded-xl flex items-center justify-center gap-2 transition-all"
+                style={{
+                  background: activeType === tab.key ? THEME.bg.card : "transparent",
+                  color: activeType === tab.key ? THEME.text.primary : THEME.text.muted,
+                  border: `1px solid ${activeType === tab.key ? "rgba(99, 102, 241, 0.1)" : "transparent"}`,
+                }}
               >
-                {t.cancel}
+                <span>{tab.icon}</span>
+                <span className="text-sm font-medium">{tab.label}</span>
+                <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(0, 0, 0, 0.05)" }}>
+                  {tab.count}
+                </span>
               </button>
-              <button
-                onClick={confirmDeleteCategory}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: "rgba(239,68,68,0.20)", color: THEME.text.primary }}
-              >
-                {t.delete}
-              </button>
-            </div>
+            ))}
           </div>
-        </div>
-      )}
-    </motion.div>
-  );
-};
 
-// ✅ PATCH 1: stop re-animating on every re-render (Telegram keyboard resize)
-const LimitsScreen = () => (
-  <motion.div
-    initial={false}              // <-- IMPORTANT
-    animate={{ x: 0 }}
-    exit={{ x: "100%" }}
-    className="fixed inset-0 z-50 overflow-y-auto"
-    style={{ background: THEME.bg.primary }}
-  >
-    <div className="p-5 pb-28">
-      <div className="flex items-center gap-4 mb-6">
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setShowLimitsScreen(false)}
-          className="w-10 h-10 rounded-xl flex items-center justify-center"
-          style={{ background: THEME.bg.card }}
-        >
-          ←
-        </motion.button>
-
-        <div className="flex-1">
-          <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-            {t.limits}
-          </h1>
-          <p className="text-sm" style={{ color: THEME.text.muted }}>
-            {limits.length}
-          </p>
-        </div>
-
-        <button
-          onClick={openAddLimit}
-          className="px-4 py-3 rounded-2xl font-semibold"
-          style={{ background: THEME.gradient.primary, color: "#000" }}
-        >
-          + {t.limits}
-        </button>
-      </div>
-
-      <div className="space-y-3">
-        {limits.length === 0 ? (
-          <GlassCard className="p-6 text-center">
-            <span className="text-5xl block mb-2">🎯</span>
-            <p style={{ color: THEME.text.muted }}>{t.noLimits}</p>
-          </GlassCard>
-        ) : (
-          limits.map((l) => {
-            const c = getCat(l.categoryId);
-            const spent = monthSpentByCategory(l.categoryId);
-            const pct = l.amount ? Math.round((spent / l.amount) * 100) : 0;
-            const isOver = pct >= 100;
-            const isNear = pct >= 80;
-
-            return (
-              <GlassCard key={l.id} className="p-5">
-                <div className="flex items-center justify-between mb-3">
+          <div className="space-y-2">
+            {list.length === 0 ? (
+              <GlassCard className="p-6 text-center">
+                <span className="text-5xl block mb-2">📁</span>
+                <p style={{ color: THEME.text.muted }}>{t.noCategories}</p>
+              </GlassCard>
+            ) : (
+              list.map((cat) => (
+                <GlassCard key={cat.id} className="p-4">
                   <div className="flex items-center gap-3">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-                      style={{ background: `${c.color}30` }}
-                    >
-                      {c.emoji}
-                    </div>
-                    <div>
-                      <p className="font-semibold" style={{ color: THEME.text.primary }}>
-                        {catLabel(c)}
-                      </p>
-                      <p className="text-sm" style={{ color: THEME.text.muted }}>
-                        {formatUZS(spent)} / {formatUZS(l.amount)} UZS
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p
-                      className="text-xl font-bold"
-                      style={{
-                        color: isOver ? THEME.accent.danger : isNear ? THEME.accent.warning : THEME.accent.success,
+                      style={{ 
+                        background: `${cat.color}30`,
+                        boxShadow: `0 4px 12px ${cat.color}20`
                       }}
                     >
-                      {clamp(pct, 0, 999)}%
-                    </p>
-                    <div className="flex gap-2 justify-end mt-1">
-                      <button onClick={() => openEditLimit(l)} className="text-xs" style={{ color: THEME.accent.info }}>
-                        {t.edit}
-                      </button>
-                      <button onClick={() => deleteLimit(l.id)} className="text-xs" style={{ color: THEME.accent.danger }}>
-                        {t.delete}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
-                  <motion.div
-                    className="h-full rounded-full"
-                    style={{
-                      background: isOver
-                        ? THEME.gradient.danger
-                        : isNear
-                        ? "linear-gradient(90deg, #FBBF24, #F59E0B)"
-                        : `linear-gradient(90deg, ${c.color}, ${c.color}88)`,
-                    }}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${clamp(pct, 0, 100)}%` }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </div>
-              </GlassCard>
-            );
-          })
-        )}
-      </div>
-
-      <div className="mt-6">
-        <GlassCard className="p-5">
-          <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
-            {limitForm.id ? t.edit : t.add}
-          </p>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="col-span-2">
-              <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                {t.category}
-              </label>
-              <select
-                value={limitForm.categoryId}
-                onChange={(e) => setLimitForm((p) => ({ ...p, categoryId: e.target.value }))}
-                className="w-full p-4 rounded-2xl"
-                style={{
-                  background: THEME.bg.input,
-                  color: THEME.text.primary,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-              >
-                {allCats.expense.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.emoji} {catLabel(c)}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="col-span-2">
-              <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                {t.amount} (UZS)
-              </label>
-
-              {/* ✅ PATCH 2: Telegram-safe numeric input (NO type="number") */}
-              <input
-                value={limitForm.amount}
-                onChange={(e) => {
-                  const v = e.target.value.replace(/[^\d]/g, ""); // digits only
-                  setLimitForm((p) => ({ ...p, amount: v }));
-                }}
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                className="w-full p-4 rounded-2xl"
-                style={{
-                  background: THEME.bg.input,
-                  color: THEME.text.primary,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-                placeholder="500000"
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-3 mt-4">
-            <button
-              onClick={() => setLimitForm({ id: null, categoryId: allCats.expense[0]?.id || "food", amount: "" })}
-              className="flex-1 py-3 rounded-2xl font-semibold"
-              style={{
-                background: THEME.bg.card,
-                color: THEME.text.secondary,
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              {t.cancel}
-            </button>
-            <button
-              onClick={saveLimit}
-              className="flex-1 py-3 rounded-2xl font-semibold"
-              style={{ background: THEME.gradient.primary, color: "#000" }}
-            >
-              {t.save}
-            </button>
-          </div>
-        </GlassCard>
-      </div>
-    </div>
-  </motion.div>
-);
-  // ---------------------------
-// Transactions screen (FIXED: Telegram-safe, no "jumping")
-// ---------------------------
-const TransactionsScreen = () => {
-  const [filter, setFilter] = useState("all"); // all|expense|income|debt|today|week|month
-
-  // ✅ include today/weekStart/month in deps, and guard month startsWith
-  const filtered = useMemo(() => {
-    const base = [...transactions];
-    if (filter === "all") return base;
-    if (filter === "expense") return base.filter((x) => x.type === "expense");
-    if (filter === "income") return base.filter((x) => x.type === "income");
-    if (filter === "debt") return base.filter((x) => x.type === "debt");
-    if (filter === "today") return base.filter((x) => x.date === today);
-    if (filter === "week") return base.filter((x) => x.date >= weekStart);
-    if (filter === "month") return base.filter((x) => String(x.date || "").startsWith(month));
-    return base;
-  }, [filter, transactions, today, weekStart, month]);
-
-  // ✅ Telegram-safe delete confirmation (NO confirm())
-  const [pendingDeleteId, setPendingDeleteId] = useState(null);
-
-  const requestDelete = (txId) => setPendingDeleteId(txId);
-
-  const confirmDelete = () => {
-    const txId = pendingDeleteId;
-    if (!txId) return;
-
-    const tx = transactions.find((x) => x.id === txId);
-    if (tx) removeTx(tx); // IMPORTANT: removeTx must NOT call confirm() inside
-
-    setPendingDeleteId(null);
-  };
-
-  const cancelDelete = () => setPendingDeleteId(null);
-
-  return (
-    <motion.div
-      initial={false} // ✅ IMPORTANT: prevents re-running slide-in on Telegram keyboard resize
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
-      <div className="p-5 pb-28">
-        <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowTransactionsScreen(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
-          >
-            ←
-          </motion.button>
-
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-              {t.allTransactions}
-            </h1>
-            <p className="text-sm" style={{ color: THEME.text.muted }}>
-              {filtered.length} / {transactions.length}
-            </p>
-          </div>
-
-          <button
-            onClick={() => openAddTx("expense")}
-            className="px-4 py-3 rounded-2xl font-semibold"
-            style={{ background: THEME.gradient.primary, color: "#000" }}
-          >
-            + {t.add}
-          </button>
-        </div>
-
-        <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
-          {[
-            { k: "all", label: t.all },
-            { k: "expense", label: t.expense },
-            { k: "income", label: t.incomeType },
-            { k: "debt", label: t.debtType },
-            { k: "today", label: t.today },
-            { k: "week", label: t.week },
-            { k: "month", label: t.month },
-          ].map((x) => (
-            <button
-              key={x.k}
-              onClick={() => setFilter(x.k)}
-              className="px-4 py-2 rounded-xl whitespace-nowrap text-sm font-medium"
-              style={{
-                background: filter === x.k ? THEME.accent.primary : THEME.bg.card,
-                color: filter === x.k ? "#000" : THEME.text.secondary,
-              }}
-            >
-              {x.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="space-y-2">
-          {filtered.length === 0 ? (
-            <GlassCard className="p-6 text-center">
-              <span className="text-5xl block mb-2">📝</span>
-              <p style={{ color: THEME.text.muted }}>{t.empty}</p>
-            </GlassCard>
-          ) : (
-            filtered.map((tx) => {
-              const c = getCat(tx.categoryId);
-              return (
-                <GlassCard key={tx.id} className="p-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-                      style={{ background: `${c.color}30` }}
-                    >
-                      {c.emoji}
+                      {cat.emoji}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
-                        {tx.description}
-                      </p>
-                      <p className="text-xs" style={{ color: THEME.text.muted }}>
-                        {tx.date} • {catLabel(c)} • {tx.source || "app"}
-                      </p>
+                      {editInlineId === cat.id ? (
+                        <div className="flex items-center gap-2">
+                          <input
+                            value={editName}
+                            onChange={(e) => setEditName(e.target.value)}
+                            className="flex-1 p-3 rounded-xl"
+                            style={{
+                              background: THEME.bg.input,
+                              color: THEME.text.primary,
+                              border: "2px solid rgba(99, 102, 241, 0.1)",
+                            }}
+                            autoFocus
+                          />
+                          <button
+                            onClick={() => saveInlineEdit(cat)}
+                            className="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style={{ background: "rgba(34,197,94,0.18)" }}
+                            title="Save"
+                          >
+                            💾
+                          </button>
+                          <button
+                            onClick={cancelInlineEdit}
+                            className="w-10 h-10 rounded-xl flex items-center justify-center"
+                            style={{ background: "rgba(239,68,68,0.18)" }}
+                            title="Cancel"
+                          >
+                            ✖
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
+                            {catLabel(cat)}
+                          </p>
+                          <p className="text-xs" style={{ color: THEME.text.muted }}>
+                            {activeType === "expense" ? `${formatUZS(monthSpentByCategory(cat.id))} UZS (month)` : ""}
+                          </p>
+                        </>
+                      )}
                     </div>
 
-                    <div className="text-right">
-                      <p
-                        className="font-bold text-lg"
-                        style={{ color: tx.amount > 0 ? THEME.accent.success : THEME.accent.danger }}
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => startInlineEdit(cat)}
+                        className="w-9 h-9 rounded-lg flex items-center justify-center"
+                        style={{ background: "rgba(56, 189, 248, 0.18)" }}
+                        title={t.edit}
                       >
-                        {tx.amount > 0 ? "+" : ""}
-                        {formatUZS(tx.amount)} UZS
-                      </p>
+                        <span style={{ color: THEME.accent.info }}>✏️</span>
+                      </button>
 
-                      <div className="flex gap-2 justify-end mt-1">
-                        <button onClick={() => openEditTx(tx)} className="text-xs" style={{ color: THEME.accent.info }}>
-                          {t.edit}
-                        </button>
-                        <button
-                          onClick={() => requestDelete(tx.id)}
-                          className="text-xs"
-                          style={{ color: THEME.accent.danger }}
-                        >
-                          {t.delete}
-                        </button>
-                      </div>
+                      <button
+                        onClick={() => requestDeleteCategory(cat.id)}
+                        className="w-9 h-9 rounded-lg flex items-center justify-center"
+                        style={{ background: "rgba(239, 68, 68, 0.18)" }}
+                        title={t.delete}
+                      >
+                        <span style={{ color: THEME.accent.danger }}>🗑️</span>
+                      </button>
                     </div>
                   </div>
                 </GlassCard>
-              );
-            })
-          )}
-        </div>
-      </div>
-
-      {/* ✅ Telegram-safe delete modal */}
-      {pendingDeleteId && (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
-          <div className="w-full max-w-md rounded-3xl p-4" style={{ background: THEME.bg.card }}>
-            <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
-              {t.confirmDelete}
-            </h3>
-            <div className="flex gap-2">
-              <button
-                onClick={cancelDelete}
-                className="flex-1 py-3 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.08)", color: THEME.text.primary }}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: "rgba(239,68,68,0.20)", color: THEME.text.primary }}
-              >
-                {t.delete}
-              </button>
-            </div>
+              ))
+            )}
           </div>
         </div>
-      )}
-    </motion.div>
-  );
-};
 
-  
-// ---------------------------
-// Analytics screen (FIXED: Telegram-safe - no re-anim on resize)
-// ---------------------------
-const AnalyticsScreen = () => (
-  <motion.div
-    initial={false}               // ✅ IMPORTANT
-    animate={{ x: 0 }}
-    exit={{ x: "100%" }}
-    className="fixed inset-0 z-50 overflow-y-auto"
-    style={{ background: THEME.bg.primary }}
-  >
-    <div className="p-5 pb-28">
-      <div className="flex items-center gap-4 mb-6">
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setShowAnalyticsScreen(false)}
-          className="w-10 h-10 rounded-xl flex items-center justify-center"
-          style={{ background: THEME.bg.card }}
-        >
-          ←
-        </motion.button>
-        <div className="flex-1">
-          <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-            {t.analytics}
-          </h1>
-          <p className="text-sm" style={{ color: THEME.text.muted }}>
-            {t.weekSpending}: {formatUZS(weekSpend)} • {t.monthSpending}: {formatUZS(monthSpend)}
-          </p>
-        </div>
-      </div>
-
-      <GlassCard className="p-5 mb-4">
-        <h3 className="font-semibold mb-4" style={{ color: THEME.text.primary }}>
-          {t.topCategories} ({month})
-        </h3>
-        <div className="space-y-3">
-          {topCats.length === 0 ? (
-            <p style={{ color: THEME.text.muted }}>{t.empty}</p>
-          ) : (
-            topCats.map((x, i) => (
-              <div key={x.categoryId} className="flex items-center gap-3">
-                <span className="text-lg">{x.cat.emoji}</span>
-                <div className="flex-1">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm" style={{ color: THEME.text.primary }}>
-                      {catLabel(x.cat)}
-                    </span>
-                    <span className="text-sm font-semibold" style={{ color: x.cat.color }}>
-                      {formatUZS(x.spent)} UZS
-                    </span>
-                  </div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ background: x.cat.color }}
-                      initial={false}                 // ✅ IMPORTANT (bars also)
-                      animate={{ width: `${clamp((x.spent / Math.max(1, monthSpend)) * 100, 2, 100)}%` }}
-                      transition={{ delay: i * 0.06 }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </GlassCard>
-
-      <GlassCard className="p-5">
-        <h3 className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
-          {t.weekSpending} / {t.monthSpending}
-        </h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 rounded-2xl" style={{ background: "rgba(239,68,68,0.10)" }}>
-            <p className="text-xs" style={{ color: THEME.text.muted }}>
-              {t.weekSpending}
-            </p>
-            <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
-              -{formatUZS(weekSpend)} UZS
-            </p>
-          </div>
-          <div className="p-4 rounded-2xl" style={{ background: "rgba(239,68,68,0.10)" }}>
-            <p className="text-xs" style={{ color: THEME.text.muted }}>
-              {t.monthSpending}
-            </p>
-            <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
-              -{formatUZS(monthSpend)} UZS
-            </p>
-          </div>
-        </div>
-      </GlassCard>
-    </div>
-  </motion.div>
-);
-
-// ---------------------------
-// Debts screen (FIXED: Telegram-safe - no re-anim on resize)
-// ---------------------------
-const DebtsScreen = () => {
-  const debtTx = transactions.filter((x) => x.type === "debt");
-  const owedByMe = debtTx.filter((x) => x.amount < 0).reduce((s, x) => s + Math.abs(x.amount), 0);
-  const owedToMe = debtTx.filter((x) => x.amount > 0).reduce((s, x) => s + x.amount, 0);
-
-  return (
-    <motion.div
-      initial={false}               // ✅ IMPORTANT
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: THEME.bg.primary }}
-    >
-      <div className="p-5 pb-28">
-        <div className="flex items-center gap-4 mb-6">
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowDebtsScreen(false)}
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
+        {/* Add Category Modal */}
+        {showAddCat && (
+          <div
+            className="fixed inset-0 z-[60] flex items-end justify-center p-4"
+            style={{ background: "rgba(0,0,0,0.55)" }}
           >
-            ←
-          </motion.button>
-          <div>
-            <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-              {t.debts}
-            </h1>
-            <p className="text-sm" style={{ color: THEME.text.muted }}>
-              {debtTx.length}
-            </p>
-          </div>
-        </div>
+            <div className="w-full max-w-md rounded-3xl p-4" style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.modal
+            }}>
+              <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
+                {t.addCategory}
+              </h3>
 
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          <GlassCard className="p-4 text-center" gradient="linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%)">
-            <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>
-              Men qarzdorman
-            </p>
-            <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
-              {formatUZS(owedByMe)} UZS
-            </p>
-          </GlassCard>
+              <input
+                value={newCatName}
+                onChange={(e) => setNewCatName(e.target.value)}
+                placeholder={t.description}
+                className="w-full p-3 rounded-xl mb-2"
+                style={{
+                  background: THEME.bg.input,
+                  color: THEME.text.primary,
+                  border: "2px solid rgba(99, 102, 241, 0.1)",
+                }}
+                autoFocus
+              />
 
-          <GlassCard className="p-4 text-center" gradient="linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%)">
-            <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>
-              Menga qarzdor
-            </p>
-            <p className="text-xl font-bold" style={{ color: THEME.accent.success }}>
-              {formatUZS(owedToMe)} UZS
-            </p>
-          </GlassCard>
-        </div>
+              <div className="flex gap-2">
+                <input
+                  value={newCatEmoji}
+                  onChange={(e) => setNewCatEmoji(e.target.value)}
+                  className="w-24 p-3 rounded-xl"
+                  style={{
+                    background: THEME.bg.input,
+                    color: THEME.text.primary,
+                    border: "2px solid rgba(99, 102, 241, 0.1)",
+                  }}
+                  placeholder="📦"
+                />
+                <input
+                  value={newCatColor}
+                  onChange={(e) => setNewCatColor(e.target.value)}
+                  className="flex-1 p-3 rounded-xl"
+                  style={{
+                    background: THEME.bg.input,
+                    color: THEME.text.primary,
+                    border: "2px solid rgba(99, 102, 241, 0.1)",
+                  }}
+                  placeholder="#90A4AE"
+                />
+              </div>
 
-        <button
-          onClick={() => openAddTx("debt")}
-          className="w-full py-4 rounded-2xl font-semibold mb-6"
-          style={{ background: THEME.gradient.primary, color: "#000" }}
-        >
-          + {t.addTransaction}
-        </button>
-
-        <div className="space-y-2">
-          {debtTx.length === 0 ? (
-            <div className="text-center py-12">
-              <span className="text-6xl mb-4 block">💳</span>
-              <p style={{ color: THEME.text.muted }}>{t.empty}</p>
+              <div className="flex gap-2 mt-3">
+                <button
+                  onClick={() => setShowAddCat(false)}
+                  className="flex-1 py-3 rounded-2xl"
+                  style={{ 
+                    background: "rgba(0, 0, 0, 0.03)", 
+                    color: THEME.text.primary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)"
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button
+                  onClick={saveNewCategory}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: THEME.gradient.primary, 
+                    color: "white",
+                    boxShadow: THEME.shadow.button
+                  }}
+                >
+                  {t.save}
+                </button>
+              </div>
             </div>
-          ) : (
-            debtTx.map((tx) => {
-              const c = getCat(tx.categoryId);
-              return (
-                <GlassCard key={tx.id} className="p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: `${c.color}20` }}>
-                      {c.emoji}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
-                        {tx.description}
-                      </p>
-                      <p className="text-xs" style={{ color: THEME.text.muted }}>
-                        {tx.date} • {catLabel(c)}
-                      </p>
-                    </div>
-                    <p className="font-bold" style={{ color: tx.amount > 0 ? THEME.accent.success : THEME.accent.danger }}>
-                      {tx.amount > 0 ? "+" : ""}
-                      {formatUZS(tx.amount)} UZS
-                    </p>
-                  </div>
-                </GlassCard>
-              );
-            })
-          )}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+          </div>
+        )}
+
+        {/* Delete Confirm Modal */}
+        {pendingDeleteId && (
+          <div
+            className="fixed inset-0 z-[60] flex items-end justify-center p-4"
+            style={{ background: "rgba(0,0,0,0.55)" }}
+          >
+            <div className="w-full max-w-md rounded-3xl p-4" style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.modal
+            }}>
+              <h3 className="text-lg font-bold mb-2" style={{ color: THEME.text.primary }}>
+                {t.confirmDelete}
+              </h3>
+              <p className="text-sm mb-3" style={{ color: THEME.text.muted }}>
+                {t.delete}?
+              </p>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={cancelDeleteCategory}
+                  className="flex-1 py-3 rounded-2xl"
+                  style={{ 
+                    background: "rgba(0, 0, 0, 0.03)", 
+                    color: THEME.text.primary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)"
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button
+                  onClick={confirmDeleteCategory}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: "rgba(239,68,68,0.12)",
+                    color: THEME.accent.danger,
+                    border: "1px solid rgba(239,68,68,0.2)"
+                  }}
+                >
+                  {t.delete}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    );
+  };
 
   // ---------------------------
-// Goals screen (FIXED: Telegram-safe)
-// - no prompt()
-// - no type="number" (use inputMode numeric)
-// - motion initial={false} (no re-animate jump)
-// - delete confirm modal (optional, Telegram-safe)
-// ---------------------------
-const GoalsScreen = () => {
-  const [pendingDeleteGoalId, setPendingDeleteGoalId] = useState(null);
-
-  // Deposit/Withdraw modal (replaces prompt())
-  const [adjustOpen, setAdjustOpen] = useState(false);
-  const [adjustGoalId, setAdjustGoalId] = useState(null);
-  const [adjustSign, setAdjustSign] = useState(+1); // +1 deposit, -1 withdraw
-  const [adjustValue, setAdjustValue] = useState("50000");
-
-  const openAdjust = (goalId, sign) => {
-    setAdjustGoalId(goalId);
-    setAdjustSign(sign);
-    setAdjustValue("50000");
-    setAdjustOpen(true);
-  };
-
-  const applyAdjust = () => {
-    const v = Math.abs(Number(String(adjustValue || "0").replace(/[^\d]/g, ""))) || 0;
-    if (!adjustGoalId || v <= 0) {
-      setAdjustOpen(false);
-      return;
-    }
-    depositToGoal(adjustGoalId, adjustSign * v);
-    setAdjustOpen(false);
-  };
-
-  const filteredGoals = goals || [];
-
-  return (
+  // Limits Screen
+  // ---------------------------
+  const LimitsScreen = () => (
     <motion.div
-      initial={false} // ✅ IMPORTANT
+      initial={false}
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       className="fixed inset-0 z-50 overflow-y-auto"
@@ -2301,115 +1848,121 @@ const GoalsScreen = () => {
         <div className="flex items-center gap-4 mb-6">
           <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={() => setShowGoalsScreen(false)}
+            initial={false}
+            onClick={() => setShowLimitsScreen(false)}
             className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
+            style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.card
+            }}
           >
             ←
           </motion.button>
 
           <div className="flex-1">
             <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-              {t.goals}
+              {t.limits}
             </h1>
             <p className="text-sm" style={{ color: THEME.text.muted }}>
-              {filteredGoals.length}
+              {limits.length}
             </p>
           </div>
 
           <button
-            onClick={openAddGoal}
+            onClick={openAddLimit}
             className="px-4 py-3 rounded-2xl font-semibold"
-            style={{ background: THEME.gradient.primary, color: "#000" }}
+            style={{ 
+              background: THEME.gradient.primary, 
+              color: "white",
+              boxShadow: THEME.shadow.button
+            }}
           >
-            + {t.add}
+            + {t.limits}
           </button>
         </div>
 
         <div className="space-y-3">
-          {filteredGoals.length === 0 ? (
+          {limits.length === 0 ? (
             <GlassCard className="p-6 text-center">
               <span className="text-5xl block mb-2">🎯</span>
-              <p style={{ color: THEME.text.muted }}>{t.noGoals}</p>
+              <p style={{ color: THEME.text.muted }}>{t.noLimits}</p>
             </GlassCard>
           ) : (
-            filteredGoals.map((g) => {
-              const pct = g.target ? Math.round((Number(g.current || 0) / Number(g.target || 1)) * 100) : 0;
-              const done = pct >= 100;
+            limits.map((l) => {
+              const c = getCat(l.categoryId);
+              const spent = monthSpentByCategory(l.categoryId);
+              const pct = l.amount ? Math.round((spent / l.amount) * 100) : 0;
+              const isOver = pct >= 100;
+              const isNear = pct >= 80;
 
               return (
-                <GlassCard key={g.id} className="p-5">
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="flex items-start gap-3">
+                <GlassCard key={l.id} className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
                       <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
-                        style={{ background: "rgba(139,92,246,0.18)" }}
+                        className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
+                        style={{ 
+                          background: `${c.color}30`,
+                          boxShadow: `0 4px 12px ${c.color}20`
+                        }}
                       >
-                        {g.emoji || "🎯"}
+                        {c.emoji}
                       </div>
                       <div>
                         <p className="font-semibold" style={{ color: THEME.text.primary }}>
-                          {g.name}
+                          {catLabel(c)}
                         </p>
                         <p className="text-sm" style={{ color: THEME.text.muted }}>
-                          {formatUZS(g.current)} / {formatUZS(g.target)} UZS
+                          {formatUZS(spent)} / {formatUZS(l.amount)} UZS
                         </p>
                       </div>
                     </div>
-
                     <div className="text-right">
-                      <p className="text-xl font-bold" style={{ color: done ? THEME.accent.success : THEME.accent.purple }}>
+                      <p
+                        className="text-xl font-bold"
+                        style={{
+                          color: isOver ? THEME.accent.danger : isNear ? THEME.accent.warning : THEME.accent.success,
+                        }}
+                      >
                         {clamp(pct, 0, 999)}%
                       </p>
                       <div className="flex gap-2 justify-end mt-1">
-                        <button onClick={() => openEditGoal(g)} className="text-xs" style={{ color: THEME.accent.info }}>
+                        <button onClick={() => openEditLimit(l)} className="text-xs font-medium"
+                          style={{ 
+                            color: THEME.accent.info,
+                            background: "rgba(59, 130, 246, 0.1)",
+                            padding: "2px 8px",
+                            borderRadius: "6px"
+                          }}>
                           {t.edit}
                         </button>
-                        <button
-                          onClick={() => setPendingDeleteGoalId(g.id)} // ✅ no confirm()
-                          className="text-xs"
-                          style={{ color: THEME.accent.danger }}
-                        >
+                        <button onClick={() => deleteLimit(l.id)} className="text-xs font-medium"
+                          style={{ 
+                            color: THEME.accent.danger,
+                            background: "rgba(239, 68, 68, 0.1)",
+                            padding: "2px 8px",
+                            borderRadius: "6px"
+                          }}>
                           {t.delete}
                         </button>
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
+                  <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(0, 0, 0, 0.05)" }}>
                     <motion.div
                       className="h-full rounded-full"
-                      style={{ background: done ? THEME.gradient.success : THEME.gradient.purple }}
-                      initial={false} // ✅ IMPORTANT
+                      style={{
+                        background: isOver
+                          ? THEME.gradient.danger
+                          : isNear
+                          ? "linear-gradient(90deg, #FBBF24, #F59E0B)"
+                          : `linear-gradient(90deg, ${c.color}, ${c.color}88)`,
+                      }}
+                      initial={false}
                       animate={{ width: `${clamp(pct, 0, 100)}%` }}
                       transition={{ duration: 0.6 }}
                     />
-                  </div>
-
-                  <div className="mt-4 grid grid-cols-2 gap-3">
-                    <button
-                      onClick={() => openAdjust(g.id, +1)} // ✅ replaces prompt deposit
-                      className="py-3 rounded-2xl font-semibold"
-                      style={{
-                        background: "rgba(34,197,94,0.16)",
-                        color: THEME.accent.success,
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      + {I18N[lang]?.deposit || "Deposit"}
-                    </button>
-
-                    <button
-                      onClick={() => openAdjust(g.id, -1)} // ✅ replaces prompt withdraw
-                      className="py-3 rounded-2xl font-semibold"
-                      style={{
-                        background: "rgba(239,68,68,0.14)",
-                        color: THEME.accent.danger,
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      − {I18N[lang]?.withdraw || "Withdraw"}
-                    </button>
                   </div>
                 </GlassCard>
               );
@@ -2420,188 +1973,309 @@ const GoalsScreen = () => {
         <div className="mt-6">
           <GlassCard className="p-5">
             <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
-              {goalForm.id ? t.edit : t.add}
+              {limitForm.id ? t.edit : t.add}
             </p>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.description}
+                  {t.category}
                 </label>
-                <input
-                  value={goalForm.name}
-                  onChange={(e) => setGoalForm((p) => ({ ...p, name: e.target.value }))}
+                <select
+                  value={limitForm.categoryId}
+                  onChange={(e) => setLimitForm((p) => ({ ...p, categoryId: e.target.value }))}
                   className="w-full p-4 rounded-2xl"
-                  style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  placeholder="Masalan: Telefon"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  {t.amount} (UZS)
-                </label>
-                {/* ✅ Telegram-safe numeric input */}
-                <input
-                  value={goalForm.target}
-                  onChange={(e) => {
-                    const v = e.target.value.replace(/[^\d]/g, "");
-                    setGoalForm((p) => ({ ...p, target: v }));
+                  style={{
+                    background: THEME.bg.input,
+                    color: THEME.text.primary,
+                    border: "2px solid rgba(99, 102, 241, 0.1)",
                   }}
-                  type="text"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  className="w-full p-4 rounded-2xl"
-                  style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  placeholder="5000000"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  Saved (UZS)
-                </label>
-                {/* ✅ Telegram-safe numeric input */}
-                <input
-                  value={goalForm.current}
-                  onChange={(e) => {
-                    const v = e.target.value.replace(/[^\d]/g, "");
-                    setGoalForm((p) => ({ ...p, current: v }));
-                  }}
-                  type="text"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  className="w-full p-4 rounded-2xl"
-                  style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  placeholder="0"
-                />
+                >
+                  {allCats.expense.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.emoji} {catLabel(c)}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="col-span-2">
                 <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
-                  Emoji
+                  {t.amount} (UZS)
                 </label>
                 <input
-                  value={goalForm.emoji}
-                  onChange={(e) => setGoalForm((p) => ({ ...p, emoji: e.target.value }))}
+                  value={limitForm.amount}
+                  onChange={(e) => {
+                    const v = e.target.value.replace(/[^\d]/g, "");
+                    setLimitForm((p) => ({ ...p, amount: v }));
+                  }}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   className="w-full p-4 rounded-2xl"
-                  style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-                  placeholder="🎯"
+                  style={{
+                    background: THEME.bg.input,
+                    color: THEME.text.primary,
+                    border: "2px solid rgba(99, 102, 241, 0.1)",
+                  }}
+                  placeholder="500000"
                 />
               </div>
             </div>
 
             <div className="flex gap-3 mt-4">
               <button
-                onClick={() => setGoalForm({ id: null, name: "", target: "", current: "", emoji: "🎯" })}
+                onClick={() => setLimitForm({ id: null, categoryId: allCats.expense[0]?.id || "food", amount: "" })}
                 className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: THEME.bg.card, color: THEME.text.secondary, border: "1px solid rgba(255,255,255,0.06)" }}
+                style={{
+                  background: THEME.bg.card,
+                  color: THEME.text.secondary,
+                  border: "1px solid rgba(0, 0, 0, 0.05)",
+                }}
               >
                 {t.cancel}
               </button>
-              <button onClick={saveGoal} className="flex-1 py-3 rounded-2xl font-semibold" style={{ background: THEME.gradient.primary, color: "#000" }}>
+              <button
+                onClick={saveLimit}
+                className="flex-1 py-3 rounded-2xl font-semibold"
+                style={{ 
+                  background: THEME.gradient.primary, 
+                  color: "white",
+                  boxShadow: THEME.shadow.button
+                }}
+              >
                 {t.save}
               </button>
             </div>
           </GlassCard>
         </div>
       </div>
-
-      {/* ✅ Deposit/Withdraw Modal */}
-      {adjustOpen && (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
-          <div className="w-full max-w-md rounded-3xl p-4" style={{ background: THEME.bg.card }}>
-            <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
-              {adjustSign > 0 ? (I18N[lang]?.deposit || "Deposit") : (I18N[lang]?.withdraw || "Withdraw")} (UZS)
-            </h3>
-
-            <input
-              value={adjustValue}
-              onChange={(e) => setAdjustValue(e.target.value.replace(/[^\d]/g, ""))}
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              className="w-full p-4 rounded-2xl"
-              style={{ background: THEME.bg.input, color: THEME.text.primary, border: "1px solid rgba(255,255,255,0.06)" }}
-              placeholder="50000"
-              autoFocus
-            />
-
-            <div className="flex gap-2 mt-3">
-              <button
-                onClick={() => setAdjustOpen(false)}
-                className="flex-1 py-3 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.08)", color: THEME.text.primary }}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={applyAdjust}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: THEME.gradient.primary, color: "#000" }}
-              >
-                {t.save}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ✅ Delete Confirm Modal */}
-      {pendingDeleteGoalId && (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
-          <div className="w-full max-w-md rounded-3xl p-4" style={{ background: THEME.bg.card }}>
-            <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
-              {t.confirmDelete}
-            </h3>
-
-            <div className="flex gap-2">
-              <button
-                onClick={() => setPendingDeleteGoalId(null)}
-                className="flex-1 py-3 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.08)", color: THEME.text.primary }}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={() => {
-                  deleteGoal(pendingDeleteGoalId); // IMPORTANT: deleteGoal must NOT use confirm() inside
-                  setPendingDeleteGoalId(null);
-                }}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: "rgba(239,68,68,0.20)", color: THEME.text.primary }}
-              >
-                {t.delete}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </motion.div>
   );
-};
 
   // ---------------------------
-// Settings screen (FIXED: Telegram-safe)
-// - initial={false} (no jump)
-// - remove confirm() -> modal
-// ---------------------------
-const SettingsScreen = () => {
-  const [resetOpen, setResetOpen] = useState(false);
+  // Transactions Screen
+  // ---------------------------
+  const TransactionsScreen = () => {
+    const [filter, setFilter] = useState("all");
 
-  const doReset = () => {
-    setBalance(0);
-    setTransactions([]);
-    setLimits([]);
-    setGoals([]);
-    setCategories(DEFAULT_CATEGORIES);
-    showToast("✓ Reset", true);
-    setResetOpen(false);
+    const filtered = useMemo(() => {
+      const base = [...transactions];
+      if (filter === "all") return base;
+      if (filter === "expense") return base.filter((x) => x.type === "expense");
+      if (filter === "income") return base.filter((x) => x.type === "income");
+      if (filter === "debt") return base.filter((x) => x.type === "debt");
+      if (filter === "today") return base.filter((x) => x.date === today);
+      if (filter === "week") return base.filter((x) => x.date >= weekStart);
+      if (filter === "month") return base.filter((x) => String(x.date || "").startsWith(month));
+      return base;
+    }, [filter, transactions, today, weekStart, month]);
+
+    const [pendingDeleteId, setPendingDeleteId] = useState(null);
+
+    const requestDelete = (txId) => setPendingDeleteId(txId);
+
+    const confirmDelete = () => {
+      const txId = pendingDeleteId;
+      if (!txId) return;
+
+      const tx = transactions.find((x) => x.id === txId);
+      if (tx) removeTx(tx);
+
+      setPendingDeleteId(null);
+    };
+    
+    const cancelDelete = () => setPendingDeleteId(null);
+
+    return (
+      <motion.div
+        initial={false}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        className="fixed inset-0 z-50 overflow-y-auto"
+        style={{ background: THEME.bg.primary }}
+      >
+        <div className="p-5 pb-28">
+          <div className="flex items-center gap-4 mb-6">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              initial={false}
+              onClick={() => setShowTransactionsScreen(false)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ 
+                background: THEME.bg.card,
+                boxShadow: THEME.shadow.card
+              }}
+            >
+              ←
+            </motion.button>
+
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
+                {t.allTransactions}
+              </h1>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {filtered.length} / {transactions.length}
+              </p>
+            </div>
+
+            <button
+              onClick={() => openAddTx("expense")}
+              className="px-4 py-3 rounded-2xl font-semibold"
+              style={{ 
+                background: THEME.gradient.primary, 
+                color: "white",
+                boxShadow: THEME.shadow.button
+              }}
+            >
+              + {t.add}
+            </button>
+          </div>
+
+          <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+            {[
+              { k: "all", label: t.all },
+              { k: "expense", label: t.expense },
+              { k: "income", label: t.incomeType },
+              { k: "debt", label: t.debtType },
+              { k: "today", label: t.today },
+              { k: "week", label: t.week },
+              { k: "month", label: t.month },
+            ].map((x) => (
+              <button
+                key={x.k}
+                onClick={() => setFilter(x.k)}
+                className="px-4 py-2 rounded-xl whitespace-nowrap text-sm font-medium"
+                style={{
+                  background: filter === x.k ? THEME.accent.primary : THEME.bg.card,
+                  color: filter === x.k ? "white" : THEME.text.secondary,
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+                }}
+              >
+                {x.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-2">
+            {filtered.length === 0 ? (
+              <GlassCard className="p-6 text-center">
+                <span className="text-5xl block mb-2">📝</span>
+                <p style={{ color: THEME.text.muted }}>{t.empty}</p>
+              </GlassCard>
+            ) : (
+              filtered.map((tx) => {
+                const c = getCat(tx.categoryId);
+                return (
+                  <GlassCard key={tx.id} className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
+                        style={{ 
+                          background: `${c.color}30`,
+                          boxShadow: `0 4px 12px ${c.color}20`
+                        }}
+                      >
+                        {c.emoji}
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
+                          {tx.description}
+                        </p>
+                        <p className="text-xs" style={{ color: THEME.text.muted }}>
+                          {tx.date} • {catLabel(c)} • {tx.source || "app"}
+                        </p>
+                      </div>
+
+                      <div className="text-right">
+                        <p
+                          className="font-bold text-lg"
+                          style={{ color: tx.amount > 0 ? THEME.accent.success : THEME.accent.danger }}
+                        >
+                          {tx.amount > 0 ? "+" : ""}
+                          {formatUZS(tx.amount)} UZS
+                        </p>
+
+                        <div className="flex gap-2 justify-end mt-1">
+                          <button onClick={() => openEditTx(tx)} className="text-xs font-medium"
+                            style={{ 
+                              color: THEME.accent.info,
+                              background: "rgba(59, 130, 246, 0.1)",
+                              padding: "2px 8px",
+                              borderRadius: "6px"
+                            }}>
+                            {t.edit}
+                          </button>
+                          <button
+                            onClick={() => requestDelete(tx.id)}
+                            className="text-xs font-medium"
+                            style={{ 
+                              color: THEME.accent.danger,
+                              background: "rgba(239, 68, 68, 0.1)",
+                              padding: "2px 8px",
+                              borderRadius: "6px"
+                            }}
+                          >
+                            {t.delete}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </GlassCard>
+                );
+              })
+            )}
+          </div>
+        </div>
+
+        {/* Delete Modal */}
+        {pendingDeleteId && (
+          <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
+            <div className="w-full max-w-md rounded-3xl p-4" style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.modal
+            }}>
+              <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
+                {t.confirmDelete}
+              </h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={cancelDelete}
+                  className="flex-1 py-3 rounded-2xl"
+                  style={{ 
+                    background: "rgba(0, 0, 0, 0.03)", 
+                    color: THEME.text.primary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)"
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button
+                  onClick={confirmDelete}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: "rgba(239,68,68,0.12)",
+                    color: THEME.accent.danger,
+                    border: "1px solid rgba(239,68,68,0.2)"
+                  }}
+                >
+                  {t.delete}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    );
   };
 
-  return (
+  // ---------------------------
+  // Analytics Screen
+  // ---------------------------
+  const AnalyticsScreen = () => (
     <motion.div
-      initial={false} // ✅ IMPORTANT
+      initial={false}
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       className="fixed inset-0 z-50 overflow-y-auto"
@@ -2611,273 +2285,950 @@ const SettingsScreen = () => {
         <div className="flex items-center gap-4 mb-6">
           <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={() => setShowSettingsScreen(false)}
+            initial={false}
+            onClick={() => setShowAnalyticsScreen(false)}
             className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: THEME.bg.card }}
+            style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.card
+            }}
           >
             ←
           </motion.button>
-
           <div className="flex-1">
             <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
-              {t.settings}
+              {t.analytics}
             </h1>
             <p className="text-sm" style={{ color: THEME.text.muted }}>
-              {t.appName} • {tgUser?.id ? `ID: ${tgUser.id}` : "no user"}
+              {t.weekSpending}: {formatUZS(weekSpend)} • {t.monthSpending}: {formatUZS(monthSpend)}
             </p>
           </div>
         </div>
 
         <GlassCard className="p-5 mb-4">
-          <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
-            {t.language}
-          </p>
-          <div className="grid grid-cols-3 gap-2">
-            {LANGS.map((l) => (
-              <button
-                key={l.key}
-                onClick={() => setLang(l.key)}
-                className="py-3 rounded-2xl font-semibold"
-                style={{
-                  background: lang === l.key ? "rgba(249,115,22,0.18)" : THEME.bg.card,
-                  color: lang === l.key ? THEME.accent.primary : THEME.text.secondary,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-              >
-                {l.flag} {l.label}
-              </button>
-            ))}
-          </div>
-        </GlassCard>
-
-        <GlassCard className="p-5 mb-4">
-          <p className="font-semibold mb-2" style={{ color: THEME.text.primary }}>
-            {t.dataMode}
-          </p>
-          <p className="text-sm mb-4" style={{ color: THEME.text.muted }}>
-            {sb.enabled() ? "Supabase env detected" : "No Supabase env (offline only)"}
-          </p>
-
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              { k: "auto", label: "Auto" },
-              { k: "local", label: "Local" },
-              { k: "remote", label: "Supabase" },
-            ].map((x) => (
-              <button
-                key={x.k}
-                onClick={() => setDataMode(x.k)}
-                className="py-3 rounded-2xl font-semibold"
-                style={{
-                  background: dataMode === x.k ? "rgba(56,189,248,0.16)" : THEME.bg.card,
-                  color: dataMode === x.k ? THEME.accent.info : THEME.text.secondary,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-              >
-                {x.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-4">
-            <button
-              onClick={syncFromRemote}
-              className="w-full py-4 rounded-2xl font-semibold"
-              style={{
-                background: useRemote ? "rgba(34,197,94,0.16)" : "rgba(255,255,255,0.06)",
-                color: useRemote ? THEME.accent.success : THEME.text.secondary,
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              🔄 {t.sync}
-            </button>
+          <h3 className="font-semibold mb-4" style={{ color: THEME.text.primary }}>
+            {t.topCategories} ({month})
+          </h3>
+          <div className="space-y-3">
+            {topCats.length === 0 ? (
+              <p style={{ color: THEME.text.muted }}>{t.empty}</p>
+            ) : (
+              topCats.map((x, i) => (
+                <div key={x.categoryId} className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-lg"
+                    style={{ background: `${x.cat.color}15` }}>
+                    {x.cat.emoji}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm font-medium" style={{ color: THEME.text.primary }}>
+                        {catLabel(x.cat)}
+                      </span>
+                      <span className="text-sm font-semibold" style={{ color: x.cat.color }}>
+                        {formatUZS(x.spent)} UZS
+                      </span>
+                    </div>
+                    <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(0, 0, 0, 0.05)" }}>
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ background: x.cat.color }}
+                        initial={false}
+                        animate={{ width: `${clamp((x.spent / Math.max(1, monthSpend)) * 100, 2, 100)}%` }}
+                        transition={{ delay: i * 0.06 }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </GlassCard>
 
         <GlassCard className="p-5">
-          <p className="font-semibold mb-2" style={{ color: THEME.text.primary }}>
-            Data tools
-          </p>
-          <p className="text-sm mb-4" style={{ color: THEME.text.muted }}>
-            Export/Import works offline. Useful to back up or move data.
-          </p>
-
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() => {
-                const payload = { v: 1, lang, balance, transactions, limits, goals, categories, exportedAt: new Date().toISOString() };
-                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = `hamyon-backup-${todayISO()}.json`;
-                a.click();
-                URL.revokeObjectURL(url);
-                showToast("✓ Export", true);
-              }}
-              className="py-4 rounded-2xl font-semibold"
-              style={{ background: THEME.bg.card, color: THEME.text.secondary, border: "1px solid rgba(255,255,255,0.06)" }}
-            >
-              ⬇ Export
-            </button>
-
-            <button
-              onClick={() => {
-                const input = document.createElement("input");
-                input.type = "file";
-                input.accept = "application/json";
-                input.onchange = async (e) => {
-                  const file = e.target.files?.[0];
-                  if (!file) return;
-                  const text = await file.text();
-                  try {
-                    const obj = JSON.parse(text);
-                    setLang(obj.lang || "uz");
-                    setBalance(Number(obj.balance || 0));
-                    setTransactions(Array.isArray(obj.transactions) ? obj.transactions : []);
-                    setLimits(Array.isArray(obj.limits) ? obj.limits : []);
-                    setGoals(Array.isArray(obj.goals) ? obj.goals : []);
-                    setCategories(obj.categories || DEFAULT_CATEGORIES);
-                    showToast("✓ Import", true);
-                  } catch {
-                    showToast("Import failed", false);
-                  }
-                };
-                input.click();
-              }}
-              className="py-4 rounded-2xl font-semibold"
-              style={{ background: THEME.bg.card, color: THEME.text.secondary, border: "1px solid rgba(255,255,255,0.06)" }}
-            >
-              ⬆ Import
-            </button>
-          </div>
-
-          <div className="mt-4">
-            {/* ✅ replace confirm() with modal */}
-            <button
-              onClick={() => setResetOpen(true)}
-              className="w-full py-4 rounded-2xl font-semibold"
-              style={{ background: "rgba(239,68,68,0.14)", color: THEME.accent.danger, border: "1px solid rgba(255,255,255,0.06)" }}
-            >
-              🗑 {t.resetLocal}
-            </button>
+          <h3 className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
+            {t.weekSpending} / {t.monthSpending}
+          </h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 rounded-2xl" style={{ 
+              background: "rgba(239,68,68,0.05)",
+              border: "1px solid rgba(239,68,68,0.1)"
+            }}>
+              <p className="text-xs font-medium mb-1" style={{ color: THEME.text.muted }}>
+                {t.weekSpending}
+              </p>
+              <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
+                -{formatUZS(weekSpend)} UZS
+              </p>
+            </div>
+            <div className="p-4 rounded-2xl" style={{ 
+              background: "rgba(239,68,68,0.05)",
+              border: "1px solid rgba(239,68,68,0.1)"
+            }}>
+              <p className="text-xs font-medium mb-1" style={{ color: THEME.text.muted }}>
+                {t.monthSpending}
+              </p>
+              <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
+                -{formatUZS(monthSpend)} UZS
+              </p>
+            </div>
           </div>
         </GlassCard>
       </div>
-
-      {/* ✅ Telegram-safe reset modal */}
-      {resetOpen && (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
-          <div className="w-full max-w-md rounded-3xl p-4" style={{ background: THEME.bg.card }}>
-            <h3 className="text-lg font-bold mb-2" style={{ color: THEME.text.primary }}>
-              Reset all local data?
-            </h3>
-            <p className="text-sm mb-3" style={{ color: THEME.text.muted }}>
-              This will delete balance, transactions, limits, goals and custom categories on this device.
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setResetOpen(false)}
-                className="flex-1 py-3 rounded-2xl"
-                style={{ background: "rgba(255,255,255,0.08)", color: THEME.text.primary }}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={doReset}
-                className="flex-1 py-3 rounded-2xl font-semibold"
-                style={{ background: "rgba(239,68,68,0.20)", color: THEME.text.primary }}
-              >
-                {t.delete}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </motion.div>
   );
-};
 
-// ---------------------------
-// Bottom navigation
-// ---------------------------
-const BottomNav = () => (
-  <div
-    className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4"
-    style={{ background: "linear-gradient(to top, rgba(15,15,20,0.95), rgba(15,15,20,0.0))" }}
-  >
-    <div
-      className="mx-auto max-w-md rounded-3xl p-2 flex items-center justify-between"
-      style={{ background: "rgba(28,28,38,0.9)", border: "1px solid rgba(255,255,255,0.06)" }}
-    >
-      {[
-        { label: t.home, icon: "🏠", onClick: () => {} },
-        { label: t.transactions, icon: "🧾", onClick: () => setShowTransactionsScreen(true) },
-        { label: t.add, icon: "➕", onClick: () => openAddTx("expense"), primary: true },
-        { label: t.debts, icon: "💳", onClick: () => setShowDebtsScreen(true) },
-        { label: t.settings, icon: "⚙️", onClick: () => setShowSettingsScreen(true) },
-      ].map((x, i) => (
-        <button
-          key={i}
-          onClick={x.onClick}
-          className="flex-1 py-3 rounded-2xl flex flex-col items-center justify-center gap-1"
-          style={{
-            background: x.primary ? THEME.gradient.primary : "transparent",
-            color: x.primary ? "#000" : THEME.text.secondary,
-            margin: x.primary ? "0 6px" : 0,
-          }}
-        >
-          <span className="text-xl">{x.icon}</span>
-          <span className="text-[11px] font-semibold">{x.label}</span>
-        </button>
-      ))}
-    </div>
-  </div>
-);
+  // ---------------------------
+  // Debts Screen
+  // ---------------------------
+  const DebtsScreen = () => {
+    const debtTx = transactions.filter((x) => x.type === "debt");
+    const owedByMe = debtTx.filter((x) => x.amount < 0).reduce((s, x) => s + Math.abs(x.amount), 0);
+    const owedToMe = debtTx.filter((x) => x.amount > 0).reduce((s, x) => s + x.amount, 0);
 
-// ---------------------------
-// Main render (FIXED)
-// ---------------------------
-return (
-  <div className="min-h-screen" style={{ background: THEME.bg.primary }}>
-    <HomeScreen />
-    <BottomNav />
+    return (
+      <motion.div
+        initial={false}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        className="fixed inset-0 z-50 overflow-y-auto"
+        style={{ background: THEME.bg.primary }}
+      >
+        <div className="p-5 pb-28">
+          <div className="flex items-center gap-4 mb-6">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              initial={false}
+              onClick={() => setShowDebtsScreen(false)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ 
+                background: THEME.bg.card,
+                boxShadow: THEME.shadow.card
+              }}
+            >
+              ←
+            </motion.button>
+            <div>
+              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
+                {t.debts}
+              </h1>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {debtTx.length}
+              </p>
+            </div>
+          </div>
 
-    {/* Toast: keep, but prevent re-animate on viewport resize */}
-    <AnimatePresence initial={false}>
-      {toast && (
-        <motion.div
-          initial={false} // ✅ IMPORTANT
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 20, opacity: 0 }}
-          className="fixed bottom-24 left-0 right-0 z-50 flex justify-center px-4"
-        >
-          <div
-            className="px-4 py-3 rounded-2xl text-sm font-semibold"
-            style={{
-              background: toast.ok ? "rgba(34,197,94,0.18)" : "rgba(239,68,68,0.18)",
-              color: toast.ok ? THEME.accent.success : THEME.accent.danger,
-              border: "1px solid rgba(255,255,255,0.06)",
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <GlassCard className="p-4 text-center" gradient="linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%)">
+              <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>
+                Men qarzdorman
+              </p>
+              <p className="text-xl font-bold" style={{ color: THEME.accent.danger }}>
+                {formatUZS(owedByMe)} UZS
+              </p>
+            </GlassCard>
+
+            <GlassCard className="p-4 text-center" gradient="linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%)">
+              <p className="text-xs mb-1" style={{ color: THEME.text.muted }}>
+                Menga qarzdor
+              </p>
+              <p className="text-xl font-bold" style={{ color: THEME.accent.success }}>
+                {formatUZS(owedToMe)} UZS
+              </p>
+            </GlassCard>
+          </div>
+
+          <button
+            onClick={() => openAddTx("debt")}
+            className="w-full py-4 rounded-2xl font-semibold mb-6"
+            style={{ 
+              background: THEME.gradient.primary, 
+              color: "white",
+              boxShadow: THEME.shadow.button
             }}
           >
-            {toast.msg}
+            + {t.addTransaction}
+          </button>
+
+          <div className="space-y-2">
+            {debtTx.length === 0 ? (
+              <div className="text-center py-12">
+                <span className="text-6xl mb-4 block">💳</span>
+                <p style={{ color: THEME.text.muted }}>{t.empty}</p>
+              </div>
+            ) : (
+              debtTx.map((tx) => {
+                const c = getCat(tx.categoryId);
+                return (
+                  <GlassCard key={tx.id} className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ 
+                        background: `${c.color}20`,
+                        boxShadow: `0 4px 12px ${c.color}20`
+                      }}>
+                        {c.emoji}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium truncate" style={{ color: THEME.text.primary }}>
+                          {tx.description}
+                        </p>
+                        <p className="text-xs" style={{ color: THEME.text.muted }}>
+                          {tx.date} • {catLabel(c)}
+                        </p>
+                      </div>
+                      <p className="font-bold" style={{ color: tx.amount > 0 ? THEME.accent.success : THEME.accent.danger }}>
+                        {tx.amount > 0 ? "+" : ""}
+                        {formatUZS(tx.amount)} UZS
+                      </p>
+                    </div>
+                  </GlassCard>
+                );
+              })
+            )}
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
+      </motion.div>
+    );
+  };
 
-    {/* Screens: remove keys + initial={false} to stop remount/slide-in replay */}
-    <AnimatePresence initial={false} mode="wait">
-      {showAddTx && addTxModalContent}
+  // ---------------------------
+  // Goals Screen
+  // ---------------------------
+  const GoalsScreen = () => {
+    const [pendingDeleteGoalId, setPendingDeleteGoalId] = useState(null);
 
-      {showCategories && <CategoriesScreen />}
-      {showLimits && <LimitsScreen />}
-      {showTransactions && <TransactionsScreen />}
-      {showAnalytics && <AnalyticsScreen />}
-      {showDebts && <DebtsScreen />}
-      {showGoals && <GoalsScreen />}
-      {showSettings && <SettingsScreen />}
-    </AnimatePresence>
-  </div>
-);
+    const [adjustOpen, setAdjustOpen] = useState(false);
+    const [adjustGoalId, setAdjustGoalId] = useState(null);
+    const [adjustSign, setAdjustSign] = useState(+1);
+    const [adjustValue, setAdjustValue] = useState("50000");
 
+    const openAdjust = (goalId, sign) => {
+      setAdjustGoalId(goalId);
+      setAdjustSign(sign);
+      setAdjustValue("50000");
+      setAdjustOpen(true);
+    };
+
+    const applyAdjust = () => {
+      const v = Math.abs(Number(String(adjustValue || "0").replace(/[^\d]/g, ""))) || 0;
+      if (!adjustGoalId || v <= 0) {
+        setAdjustOpen(false);
+        return;
+      }
+      depositToGoal(adjustGoalId, adjustSign * v);
+      setAdjustOpen(false);
+    };
+
+    const filteredGoals = goals || [];
+
+    return (
+      <motion.div
+        initial={false}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        className="fixed inset-0 z-50 overflow-y-auto"
+        style={{ background: THEME.bg.primary }}
+      >
+        <div className="p-5 pb-28">
+          <div className="flex items-center gap-4 mb-6">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              initial={false}
+              onClick={() => setShowGoalsScreen(false)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ 
+                background: THEME.bg.card,
+                boxShadow: THEME.shadow.card
+              }}
+            >
+              ←
+            </motion.button>
+
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
+                {t.goals}
+              </h1>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {filteredGoals.length}
+              </p>
+            </div>
+
+            <button
+              onClick={openAddGoal}
+              className="px-4 py-3 rounded-2xl font-semibold"
+              style={{ 
+                background: THEME.gradient.primary, 
+                color: "white",
+                boxShadow: THEME.shadow.button
+              }}
+            >
+              + {t.add}
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            {filteredGoals.length === 0 ? (
+              <GlassCard className="p-6 text-center">
+                <span className="text-5xl block mb-2">🎯</span>
+                <p style={{ color: THEME.text.muted }}>{t.noGoals}</p>
+              </GlassCard>
+            ) : (
+              filteredGoals.map((g) => {
+                const pct = g.target ? Math.round((Number(g.current || 0) / Number(g.target || 1)) * 100) : 0;
+                const done = pct >= 100;
+
+                return (
+                  <GlassCard key={g.id} className="p-5">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="flex items-start gap-3">
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                          style={{ 
+                            background: "rgba(139,92,246,0.1)",
+                            boxShadow: "0 4px 12px rgba(139, 92, 246, 0.1)"
+                          }}
+                        >
+                          {g.emoji || "🎯"}
+                        </div>
+                        <div>
+                          <p className="font-semibold" style={{ color: THEME.text.primary }}>
+                            {g.name}
+                          </p>
+                          <p className="text-sm" style={{ color: THEME.text.muted }}>
+                            {formatUZS(g.current)} / {formatUZS(g.target)} UZS
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="text-right">
+                        <p className="text-xl font-bold" style={{ color: done ? THEME.accent.success : THEME.accent.purple }}>
+                          {clamp(pct, 0, 999)}%
+                        </p>
+                        <div className="flex gap-2 justify-end mt-1">
+                          <button onClick={() => openEditGoal(g)} className="text-xs font-medium"
+                            style={{ 
+                              color: THEME.accent.info,
+                              background: "rgba(59, 130, 246, 0.1)",
+                              padding: "2px 8px",
+                              borderRadius: "6px"
+                            }}>
+                            {t.edit}
+                          </button>
+                          <button
+                            onClick={() => setPendingDeleteGoalId(g.id)}
+                            className="text-xs font-medium"
+                            style={{ 
+                              color: THEME.accent.danger,
+                              background: "rgba(239, 68, 68, 0.1)",
+                              padding: "2px 8px",
+                              borderRadius: "6px"
+                            }}
+                          >
+                            {t.delete}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(0, 0, 0, 0.05)" }}>
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ background: done ? THEME.gradient.success : THEME.gradient.purple }}
+                        initial={false}
+                        animate={{ width: `${clamp(pct, 0, 100)}%` }}
+                        transition={{ duration: 0.6 }}
+                      />
+                    </div>
+
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      <button
+                        onClick={() => openAdjust(g.id, +1)}
+                        className="py-3 rounded-2xl font-semibold"
+                        style={{
+                          background: "rgba(34,197,94,0.08)",
+                          color: THEME.accent.success,
+                          border: "1px solid rgba(34, 197, 94, 0.1)",
+                        }}
+                      >
+                        + {I18N[lang]?.deposit || "Deposit"}
+                      </button>
+
+                      <button
+                        onClick={() => openAdjust(g.id, -1)}
+                        className="py-3 rounded-2xl font-semibold"
+                        style={{
+                          background: "rgba(239,68,68,0.08)",
+                          color: THEME.accent.danger,
+                          border: "1px solid rgba(239, 68, 68, 0.1)",
+                        }}
+                      >
+                        − {I18N[lang]?.withdraw || "Withdraw"}
+                      </button>
+                    </div>
+                  </GlassCard>
+                );
+              })
+            )}
+          </div>
+
+          <div className="mt-6">
+            <GlassCard className="p-5">
+              <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
+                {goalForm.id ? t.edit : t.add}
+              </p>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="col-span-2">
+                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
+                    {t.description}
+                  </label>
+                  <input
+                    value={goalForm.name}
+                    onChange={(e) => setGoalForm((p) => ({ ...p, name: e.target.value }))}
+                    className="w-full p-4 rounded-2xl"
+                    style={{ 
+                      background: THEME.bg.input, 
+                      color: THEME.text.primary, 
+                      border: "2px solid rgba(99, 102, 241, 0.1)" 
+                    }}
+                    placeholder="Masalan: Telefon"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
+                    {t.amount} (UZS)
+                  </label>
+                  <input
+                    value={goalForm.target}
+                    onChange={(e) => {
+                      const v = e.target.value.replace(/[^\d]/g, "");
+                      setGoalForm((p) => ({ ...p, target: v }));
+                    }}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    className="w-full p-4 rounded-2xl"
+                    style={{ 
+                      background: THEME.bg.input, 
+                      color: THEME.text.primary, 
+                      border: "2px solid rgba(99, 102, 241, 0.1)" 
+                    }}
+                    placeholder="5000000"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
+                    Saved (UZS)
+                  </label>
+                  <input
+                    value={goalForm.current}
+                    onChange={(e) => {
+                      const v = e.target.value.replace(/[^\d]/g, "");
+                      setGoalForm((p) => ({ ...p, current: v }));
+                    }}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    className="w-full p-4 rounded-2xl"
+                    style={{ 
+                      background: THEME.bg.input, 
+                      color: THEME.text.primary, 
+                      border: "2px solid rgba(99, 102, 241, 0.1)" 
+                    }}
+                    placeholder="0"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <label className="text-xs block mb-1" style={{ color: THEME.text.muted }}>
+                    Emoji
+                  </label>
+                  <input
+                    value={goalForm.emoji}
+                    onChange={(e) => setGoalForm((p) => ({ ...p, emoji: e.target.value }))}
+                    className="w-full p-4 rounded-2xl"
+                    style={{ 
+                      background: THEME.bg.input, 
+                      color: THEME.text.primary, 
+                      border: "2px solid rgba(99, 102, 241, 0.1)" 
+                    }}
+                    placeholder="🎯"
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-4">
+                <button
+                  onClick={() => setGoalForm({ id: null, name: "", target: "", current: "", emoji: "🎯" })}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: THEME.bg.card, 
+                    color: THEME.text.secondary, 
+                    border: "1px solid rgba(0, 0, 0, 0.05)" 
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button onClick={saveGoal} className="flex-1 py-3 rounded-2xl font-semibold" style={{ 
+                  background: THEME.gradient.primary, 
+                  color: "white",
+                  boxShadow: THEME.shadow.button
+                }}>
+                  {t.save}
+                </button>
+              </div>
+            </GlassCard>
+          </div>
+        </div>
+
+        {/* Adjust Modal */}
+        {adjustOpen && (
+          <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
+            <div className="w-full max-w-md rounded-3xl p-4" style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.modal
+            }}>
+              <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
+                {adjustSign > 0 ? (I18N[lang]?.deposit || "Deposit") : (I18N[lang]?.withdraw || "Withdraw")} (UZS)
+              </h3>
+
+              <input
+                value={adjustValue}
+                onChange={(e) => setAdjustValue(e.target.value.replace(/[^\d]/g, ""))}
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                className="w-full p-4 rounded-2xl"
+                style={{ 
+                  background: THEME.bg.input, 
+                  color: THEME.text.primary, 
+                  border: "2px solid rgba(99, 102, 241, 0.1)" 
+                }}
+                placeholder="50000"
+                autoFocus
+              />
+
+              <div className="flex gap-2 mt-3">
+                <button
+                  onClick={() => setAdjustOpen(false)}
+                  className="flex-1 py-3 rounded-2xl"
+                  style={{ 
+                    background: "rgba(0, 0, 0, 0.03)", 
+                    color: THEME.text.primary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)"
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button
+                  onClick={applyAdjust}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: THEME.gradient.primary, 
+                    color: "white",
+                    boxShadow: THEME.shadow.button
+                  }}
+                >
+                  {t.save}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Delete Confirm Modal */}
+        {pendingDeleteGoalId && (
+          <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
+            <div className="w-full max-w-md rounded-3xl p-4" style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.modal
+            }}>
+              <h3 className="text-lg font-bold mb-3" style={{ color: THEME.text.primary }}>
+                {t.confirmDelete}
+              </h3>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setPendingDeleteGoalId(null)}
+                  className="flex-1 py-3 rounded-2xl"
+                  style={{ 
+                    background: "rgba(0, 0, 0, 0.03)", 
+                    color: THEME.text.primary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)"
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button
+                  onClick={() => {
+                    deleteGoal(pendingDeleteGoalId);
+                    setPendingDeleteGoalId(null);
+                  }}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: "rgba(239,68,68,0.12)",
+                    color: THEME.accent.danger,
+                    border: "1px solid rgba(239,68,68,0.2)"
+                  }}
+                >
+                  {t.delete}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    );
+  };
+
+  // ---------------------------
+  // Settings Screen
+  // ---------------------------
+  const SettingsScreen = () => {
+    const [resetOpen, setResetOpen] = useState(false);
+
+    const doReset = () => {
+      setBalance(0);
+      setTransactions([]);
+      setLimits([]);
+      setGoals([]);
+      setCategories(DEFAULT_CATEGORIES);
+      showToast("✓ Reset", true);
+      setResetOpen(false);
+    };
+
+    return (
+      <motion.div
+        initial={false}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        className="fixed inset-0 z-50 overflow-y-auto"
+        style={{ background: THEME.bg.primary }}
+      >
+        <div className="p-5 pb-28">
+          <div className="flex items-center gap-4 mb-6">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              initial={false}
+              onClick={() => setShowSettingsScreen(false)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ 
+                background: THEME.bg.card,
+                boxShadow: THEME.shadow.card
+              }}
+            >
+              ←
+            </motion.button>
+
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold" style={{ color: THEME.text.primary }}>
+                {t.settings}
+              </h1>
+              <p className="text-sm" style={{ color: THEME.text.muted }}>
+                {t.appName} • {tgUser?.id ? `ID: ${tgUser.id}` : "no user"}
+              </p>
+            </div>
+          </div>
+
+          <GlassCard className="p-5 mb-4">
+            <p className="font-semibold mb-3" style={{ color: THEME.text.primary }}>
+              {t.language}
+            </p>
+            <div className="grid grid-cols-3 gap-2">
+              {LANGS.map((l) => (
+                <button
+                  key={l.key}
+                  onClick={() => setLang(l.key)}
+                  className="py-3 rounded-2xl font-semibold"
+                  style={{
+                    background: lang === l.key ? "rgba(99, 102, 241, 0.18)" : THEME.bg.card,
+                    color: lang === l.key ? THEME.accent.primary : THEME.text.secondary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)",
+                  }}
+                >
+                  {l.flag} {l.label}
+                </button>
+              ))}
+            </div>
+          </GlassCard>
+
+          <GlassCard className="p-5 mb-4">
+            <p className="font-semibold mb-2" style={{ color: THEME.text.primary }}>
+              {t.dataMode}
+            </p>
+            <p className="text-sm mb-4" style={{ color: THEME.text.muted }}>
+              {sb.enabled() ? "Supabase env detected" : "No Supabase env (offline only)"}
+            </p>
+
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { k: "auto", label: "Auto" },
+                { k: "local", label: "Local" },
+                { k: "remote", label: "Supabase" },
+              ].map((x) => (
+                <button
+                  key={x.k}
+                  onClick={() => setDataMode(x.k)}
+                  className="py-3 rounded-2xl font-semibold"
+                  style={{
+                    background: dataMode === x.k ? "rgba(56,189,248,0.16)" : THEME.bg.card,
+                    color: dataMode === x.k ? THEME.accent.info : THEME.text.secondary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)",
+                  }}
+                >
+                  {x.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-4">
+              <button
+                onClick={syncFromRemote}
+                className="w-full py-4 rounded-2xl font-semibold"
+                style={{
+                  background: useRemote ? "rgba(34,197,94,0.1)" : "rgba(0, 0, 0, 0.03)",
+                  color: useRemote ? THEME.accent.success : THEME.text.secondary,
+                  border: "1px solid rgba(0, 0, 0, 0.05)",
+                }}
+              >
+                🔄 {t.sync}
+              </button>
+            </div>
+          </GlassCard>
+
+          <GlassCard className="p-5">
+            <p className="font-semibold mb-2" style={{ color: THEME.text.primary }}>
+              Data tools
+            </p>
+            <p className="text-sm mb-4" style={{ color: THEME.text.muted }}>
+              Export/Import works offline. Useful to back up or move data.
+            </p>
+
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => {
+                  const payload = { v: 1, lang, balance, transactions, limits, goals, categories, exportedAt: new Date().toISOString() };
+                  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `hamyon-backup-${todayISO()}.json`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                  showToast("✓ Export", true);
+                }}
+                className="py-4 rounded-2xl font-semibold"
+                style={{ 
+                  background: THEME.bg.card, 
+                  color: THEME.text.secondary, 
+                  border: "1px solid rgba(0, 0, 0, 0.05)" 
+                }}
+              >
+                ⬇ Export
+              </button>
+
+              <button
+                onClick={() => {
+                  const input = document.createElement("input");
+                  input.type = "file";
+                  input.accept = "application/json";
+                  input.onchange = async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const text = await file.text();
+                    try {
+                      const obj = JSON.parse(text);
+                      setLang(obj.lang || "uz");
+                      setBalance(Number(obj.balance || 0));
+                      setTransactions(Array.isArray(obj.transactions) ? obj.transactions : []);
+                      setLimits(Array.isArray(obj.limits) ? obj.limits : []);
+                      setGoals(Array.isArray(obj.goals) ? obj.goals : []);
+                      setCategories(obj.categories || DEFAULT_CATEGORIES);
+                      showToast("✓ Import", true);
+                    } catch {
+                      showToast("Import failed", false);
+                    }
+                  };
+                  input.click();
+                }}
+                className="py-4 rounded-2xl font-semibold"
+                style={{ 
+                  background: THEME.bg.card, 
+                  color: THEME.text.secondary, 
+                  border: "1px solid rgba(0, 0, 0, 0.05)" 
+                }}
+              >
+                ⬆ Import
+              </button>
+            </div>
+
+            <div className="mt-4">
+              <button
+                onClick={() => setResetOpen(true)}
+                className="w-full py-4 rounded-2xl font-semibold"
+                style={{ 
+                  background: "rgba(239,68,68,0.08)", 
+                  color: THEME.accent.danger, 
+                  border: "1px solid rgba(0, 0, 0, 0.05)" 
+                }}
+              >
+                🗑 {t.resetLocal}
+              </button>
+            </div>
+          </GlassCard>
+        </div>
+
+        {/* Reset Modal */}
+        {resetOpen && (
+          <div className="fixed inset-0 z-[60] flex items-end justify-center p-4" style={{ background: "rgba(0,0,0,0.55)" }}>
+            <div className="w-full max-w-md rounded-3xl p-4" style={{ 
+              background: THEME.bg.card,
+              boxShadow: THEME.shadow.modal
+            }}>
+              <h3 className="text-lg font-bold mb-2" style={{ color: THEME.text.primary }}>
+                Reset all local data?
+              </h3>
+              <p className="text-sm mb-3" style={{ color: THEME.text.muted }}>
+                This will delete balance, transactions, limits, goals and custom categories on this device.
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setResetOpen(false)}
+                  className="flex-1 py-3 rounded-2xl"
+                  style={{ 
+                    background: "rgba(0, 0, 0, 0.03)", 
+                    color: THEME.text.primary,
+                    border: "1px solid rgba(0, 0, 0, 0.05)"
+                  }}
+                >
+                  {t.cancel}
+                </button>
+                <button
+                  onClick={doReset}
+                  className="flex-1 py-3 rounded-2xl font-semibold"
+                  style={{ 
+                    background: "rgba(239,68,68,0.12)",
+                    color: THEME.accent.danger,
+                    border: "1px solid rgba(239,68,68,0.2)"
+                  }}
+                >
+                  {t.delete}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    );
+  };
+
+  // ---------------------------
+  // Bottom Navigation
+  // ---------------------------
+  const BottomNav = () => (
+    <div className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4">
+      <div className="mx-auto max-w-md rounded-3xl p-3 flex items-center justify-between"
+        style={{ 
+          background: "rgba(255, 255, 255, 0.95)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(0, 0, 0, 0.08)",
+          boxShadow: "0 -10px 40px rgba(0, 0, 0, 0.08)"
+        }}
+      >
+        {[
+          { label: t.home, icon: "🏠", onClick: () => {}, active: true },
+          { label: t.transactions, icon: "📊", onClick: () => setShowTransactionsScreen(true) },
+          { 
+            label: t.add, 
+            icon: "➕", 
+            onClick: () => openAddTx("expense"), 
+            primary: true,
+            style: { 
+              background: THEME.gradient.primary,
+              boxShadow: THEME.shadow.button,
+              marginTop: "-20px"
+            }
+          },
+          { label: t.goals, icon: "🎯", onClick: () => setShowGoalsScreen(true) },
+          { label: t.settings, icon: "⚙️", onClick: () => setShowSettingsScreen(true) },
+        ].map((x, i) => (
+          <motion.button
+            key={i}
+            whileTap={{ scale: 0.95 }}
+            initial={false}
+            onClick={x.onClick}
+            className={`flex-1 py-3 rounded-2xl flex flex-col items-center justify-center gap-1 ${x.primary ? "relative" : ""}`}
+            style={{
+              background: x.primary ? x.style?.background : "transparent",
+              color: x.primary ? "white" : THEME.text.secondary,
+              transform: x.primary ? "scale(1.1)" : "none",
+              zIndex: x.primary ? 10 : 1,
+            }}
+          >
+            <span className="text-2xl">{x.icon}</span>
+            {!x.primary && (
+              <span className="text-[10px] font-semibold">{x.label}</span>
+            )}
+          </motion.button>
+        ))}
+      </div>
+    </div>
+  );
+
+  // ---------------------------
+  // Main render
+  // ---------------------------
+  return (
+    <div 
+      className="min-h-screen fixed inset-0 overflow-y-auto" 
+      style={{ 
+        background: '#FFFFFF',
+        WebkitOverflowScrolling: 'touch',
+        overscrollBehaviorY: 'contain'
+      }}
+    >
+      <HomeScreen />
+      <BottomNav />
+
+      {/* Toast */}
+      <AnimatePresence initial={false}>
+        {toast && (
+          <motion.div
+            initial={false}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0 }}
+            className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4"
+          >
+            <div
+              className="px-6 py-4 rounded-2xl text-sm font-semibold flex items-center gap-2"
+              style={{
+                background: toast.ok ? "rgba(16, 185, 129, 0.95)" : "rgba(239, 68, 68, 0.95)",
+                color: "white",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                boxShadow: "0 10px 40px rgba(0, 0, 0, 0.15)",
+              }}
+            >
+              <span>{toast.ok ? "✅" : "⚠️"}</span>
+              <span>{toast.msg}</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Screens */}
+      <AnimatePresence initial={false} mode="wait">
+        {showAddTx && addTxModalContent}
+
+        {showCategories && <CategoriesScreen />}
+        {showLimits && <LimitsScreen />}
+        {showTransactions && <TransactionsScreen />}
+        {showAnalytics && <AnalyticsScreen />}
+        {showDebts && <DebtsScreen />}
+        {showGoals && <GoalsScreen />}
+        {showSettings && <SettingsScreen />}
+      </AnimatePresence>
+    </div>
+  );
+}
